@@ -2,6 +2,19 @@
 #include <cmath>
 #include <iostream>
 
+// Function to generate a random number in the range [0, 1)
+double generateRandomNumber(unsigned int& seed, int size, unsigned int feedbackMask) {
+    // Generate the next bit in the LFSR sequence
+    bool nextBit = seed & 1;
+    seed >>= 1;
+    if (nextBit) {
+        seed ^= feedbackMask;
+    }
+
+    // Convert the LFSR output to a random number in the range [0, 1)
+    return static_cast<double>(seed) / ((1U << size) - 1);
+}
+
 // A simple implementation of the max
 template <typename T>
 T custom_max(T a, T b)
@@ -127,6 +140,17 @@ int main(int argc, char **argv)
 
   std::cout << "Call Price:      " << call << std::endl;
   std::cout << "Put Price:       " << put << std::endl;
+
+   unsigned int seed = 0b101101;  // Initial seed
+    int size = 6;  // LFSR size
+    unsigned int feedbackMask = 0b100101;  // Feedback mask (adjust for desired behavior)
+
+    for (int i = 0; i < 10; i++) {
+        double randomNumber = generateRandomNumber(seed, size, feedbackMask);
+        std::cout << randomNumber << " ";
+    }
+
+    std::cout << std::endl;
 
   return 0;
 }
