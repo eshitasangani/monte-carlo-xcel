@@ -3,17 +3,32 @@
 #include <cmath>
 #include <iostream>
 
+#include "typedefs.h"
+#include <hls_stream.h>
+
+typedef double theta_type;
+
+void dut(hls::stream<bit32_t> &strm_out);
+
 template <typename T>
 T custom_max(T a, T b);
+
+template <typename T>
+T custom_abs(T x);
 
 template <typename T>
 T custom_sqrt(T x, T epsilon);
 
 template <typename T>
-T custom_log(T x, int terms);
+T custom_log(T x);
 
-double gaussian_box_muller();
+template <typename T>
+T custom_exp(T x);
 
-double monte_carlo_call_price(const int &num_sims, const double &S, const double &K, const double &r, const double &v, const double &T);
+theta_type generate_rand();
 
-double monte_carlo_put_price(const int &num_sims, const double &S, const double &K, const double &r, const double &v, const double &T);
+theta_type gaussian_box_muller();
+
+theta_type monte_carlo_call_price(const int &num_sims, const theta_type &S, const theta_type &K, const theta_type &r, const theta_type &v, const theta_type &T);
+
+theta_type monte_carlo_put_price(const int &num_sims, const theta_type &S, const theta_type &K, const theta_type &r, const theta_type &v, const theta_type &T);

@@ -20,7 +20,7 @@ TCL_SCRIPT=run.tcl
 
 all: csim
 
-monte-carlo: monte-carlo.cpp
+monte-carlo: monte-carlo.cpp monte-carlo_test.cpp
 	g++ ${CFLAGS} $^ -o $@ -lrt
 
 result/monte-carlo.txt: monte-carlo
