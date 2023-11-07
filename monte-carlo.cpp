@@ -1,6 +1,6 @@
 #include <iostream>
 typedef double theta_type;
-// A simple implementation of the max
+
 template <typename T>
 T custom_max(T a, T b)
 {
@@ -17,7 +17,25 @@ T custom_sqrt(T x, T epsilon) {
     }
     T guess = x;
     T nextGuess = 0.5 * (guess + x / guess);
-
+    // key: 0 value: 152
+    // key: 1 value: 65367
+    // key: 2 value: 1319139
+    // key: 3 value: 4814309
+    // key: 4 value: 6109258
+    // key: 5 value: 24183887
+    // key: 6 value: 2107551
+    // key: 7 value: 906203
+    // key: 8 value: 341471
+    // key: 9 value: 109410
+    // key: 10 value: 31569
+    // key: 11 value: 8540
+    // key: 12 value: 2300
+    // key: 13 value: 625
+    // key: 14 value: 173
+    // key: 15 value: 32
+    // key: 16 value: 12
+    // key: 17 value: 1
+    // key: 19 value: 1
     while (custom_abs<T>(guess - nextGuess) >= epsilon) {
         guess = nextGuess;
         nextGuess = 0.5 * (guess + x / guess);
@@ -67,10 +85,6 @@ T custom_exp(T x, int terms = 10)
   return result;
 }
 
-// A simple implementation of the Box-Muller algorithm, used to generate
-// gaussian random numbers - necessary for the Monte Carlo method below
-// Note that C++11 actually provides std::normal_distribution<> in
-// the <random> library, which can be used instead of this function
 theta_type gaussian_box_muller()
 {
   theta_type x = 0.0;
@@ -78,9 +92,7 @@ theta_type gaussian_box_muller()
   theta_type euclid_sq = 0.0;
   theta_type epsilon = 0.00001;
 
-  // Continue generating two uniform random variables
-  // until the square of their "euclidean distance"
-  // is less than unity
+  // Can't Unroll. Just Keep trying until we find one
   do
   {
     theta_type randMax = RAND_MAX;
@@ -88,7 +100,6 @@ theta_type gaussian_box_muller()
     y = 2.0 * rand() / randMax - 1;
     euclid_sq = x * x + y * y;
   } while (euclid_sq >= 1.0);
-
   return x * custom_sqrt<theta_type>(-2 * custom_log<theta_type>(euclid_sq, 10) / euclid_sq, epsilon);
 }
 
@@ -132,7 +143,7 @@ theta_type monte_carlo_put_price(const int &num_sims, const theta_type &S, const
 int main(int argc, char **argv)
 {
   // First we create the parameter list
-  int num_sims = 10000000; // Number of simulated asset paths
+  int num_sims = 10000000;     // Number of simulated asset paths
   theta_type S = 100.0;        // Option price
   theta_type K = 100.0;        // Strike price
   theta_type r = 0.05;         // Risk-free rate (5%)
