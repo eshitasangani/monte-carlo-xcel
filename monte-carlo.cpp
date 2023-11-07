@@ -20,15 +20,23 @@ T custom_max(T a, T b)
   return (b < a) ? a : b;
 }
 
-template <typename T>
-T custom_sqrt(T x, T epsilon)
-{
-  T guess = x;
-  while ((guess * guess - x) > epsilon)
-  {
-    guess = 0.5 * (guess + x / guess);
-  }
-  return guess;
+double custom_abs(double x) {
+    return (x < 0) ? -x : x;
+}
+
+double custom_sqrt(double x, double epsilon) {
+    if (x < 0) {
+        return -1.0;
+    }
+    double guess = x;
+    double nextGuess = 0.5 * (guess + x / guess);
+
+    while (custom_abs(guess - nextGuess) >= epsilon) {
+        guess = nextGuess;
+        nextGuess = 0.5 * (guess + x / guess);
+    }
+
+    return nextGuess;
 }
 
 template <typename T>
