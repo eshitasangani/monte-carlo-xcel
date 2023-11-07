@@ -2,6 +2,49 @@
 #include <cmath>
 #include <iostream>
 
+// A simple implementation of the max
+template <typename T>
+T custom_max(T a, T b)
+{
+  return (b < a) ? a : b;
+}
+
+template <typename T>
+T custom_sqrt(T x, T epsilon)
+{
+  T guess = x;
+  while ((guess * guess - x) > epsilon)
+  {
+    guess = 0.5 * (guess + x / guess);
+  }
+  return guess;
+}
+
+template <typename T>
+T custom_log(T x, int terms)
+{
+  if (x <= 0)
+  {
+    std::cerr << "Error: Input must be greater than 0" << std::endl;
+    return -1.0; // Error value
+  }
+
+  T result = 0.0;
+  T term = (x - 1) / (x + 1);
+  T term_squared = term * term;
+  T numerator = term;
+  int denominator = 1;
+
+  for (int i = 1; i <= terms; i++)
+  {
+    result += numerator / denominator;
+    numerator *= term_squared;
+    denominator += 2;
+  }
+
+  return 2 * result;
+}
+
 // A simple implementation of the Box-Muller algorithm, used to generate
 // gaussian random numbers - necessary for the Monte Carlo method below
 // Note that C++11 actually provides std::normal_distribution<> in
@@ -11,6 +54,7 @@ double gaussian_box_muller()
   double x = 0.0;
   double y = 0.0;
   double euclid_sq = 0.0;
+  double epsilon = 0.00001;
 
   // Continue generating two uniform random variables
   // until the square of their "euclidean distance"
@@ -22,7 +66,7 @@ double gaussian_box_muller()
     euclid_sq = x * x + y * y;
   } while (euclid_sq >= 1.0);
 
-  return x * sqrt(-2 * log(euclid_sq) / euclid_sq);
+  return x * custom_sqrt(-2 * custom_log(euclid_sq, 10) / euclid_sq, epsilon);
 }
 
 // Pricing a European vanilla call option with a Monte Carlo method
@@ -36,7 +80,7 @@ double monte_carlo_call_price(const int &num_sims, const double &S, const double
   {
     double gauss_bm = gaussian_box_muller();
     S_cur = S_adjust * exp(sqrt(v * v * T) * gauss_bm);
-    payoff_sum += std::max(S_cur - K, 0.0);
+    payoff_sum += custom_max<double>(S_cur - K, 0.0);
   }
 
   return (payoff_sum / static_cast<double>(num_sims)) * exp(-r * T);
@@ -53,7 +97,7 @@ double monte_carlo_put_price(const int &num_sims, const double &S, const double 
   {
     double gauss_bm = gaussian_box_muller();
     S_cur = S_adjust * exp(sqrt(v * v * T) * gauss_bm);
-    payoff_sum += std::max(K - S_cur, 0.0);
+    payoff_sum += custom_max<double>(K - S_cur, 0.0);
   }
 
   return (payoff_sum / static_cast<double>(num_sims)) * exp(-r * T);
