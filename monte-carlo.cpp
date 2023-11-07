@@ -1,5 +1,3 @@
-#include <algorithm> // Needed for the "max" function
-#include <cmath>
 #include <iostream>
 
 // Function to generate a random number in the range [0, 1)
@@ -58,6 +56,22 @@ T custom_log(T x, int terms)
   return 2 * result;
 }
 
+template <typename T>
+T custom_exp(T x, int terms)
+{
+  T result = 1.0;
+  T term = 1.0;
+  T factorial = 1.0;
+
+  for (int i = 1; i <= terms; i++)
+  {
+    term *= x / i;
+    result += term;
+  }
+
+  return result;
+}
+
 // A simple implementation of the Box-Muller algorithm, used to generate
 // gaussian random numbers - necessary for the Monte Carlo method below
 // Note that C++11 actually provides std::normal_distribution<> in
@@ -85,35 +99,37 @@ double gaussian_box_muller()
 // Pricing a European vanilla call option with a Monte Carlo method
 double monte_carlo_call_price(const int &num_sims, const double &S, const double &K, const double &r, const double &v, const double &T)
 {
-  double S_adjust = S * exp(T * (r - 0.5 * v * v));
+  double S_adjust = S * custom_exp(T * (r - 0.5 * v * v), 10);
   double S_cur = 0.0;
   double payoff_sum = 0.0;
+  double epsilon = 0.0001;
 
   for (int i = 0; i < num_sims; i++)
   {
     double gauss_bm = gaussian_box_muller();
-    S_cur = S_adjust * exp(sqrt(v * v * T) * gauss_bm);
+    S_cur = S_adjust * custom_exp(custom_sqrt(v * v * T, epsilon) * gauss_bm, 10);
     payoff_sum += custom_max<double>(S_cur - K, 0.0);
   }
 
-  return (payoff_sum / static_cast<double>(num_sims)) * exp(-r * T);
+  return (payoff_sum / static_cast<double>(num_sims)) * custom_exp(-r * T, 10);
 }
 
 // Pricing a European vanilla put option with a Monte Carlo method
 double monte_carlo_put_price(const int &num_sims, const double &S, const double &K, const double &r, const double &v, const double &T)
 {
-  double S_adjust = S * exp(T * (r - 0.5 * v * v));
+  double S_adjust = S * custom_exp(T * (r - 0.5 * v * v), 10);
   double S_cur = 0.0;
   double payoff_sum = 0.0;
+  double epsilon = 0.0001;
 
   for (int i = 0; i < num_sims; i++)
   {
     double gauss_bm = gaussian_box_muller();
-    S_cur = S_adjust * exp(sqrt(v * v * T) * gauss_bm);
+    S_cur = S_adjust * custom_exp(custom_sqrt(v * v * T, epsilon) * gauss_bm, 10);
     payoff_sum += custom_max<double>(K - S_cur, 0.0);
   }
 
-  return (payoff_sum / static_cast<double>(num_sims)) * exp(-r * T);
+  return (payoff_sum / static_cast<double>(num_sims)) * custom_exp(-r * T, 10);
 }
 
 int main(int argc, char **argv)
