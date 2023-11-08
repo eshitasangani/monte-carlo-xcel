@@ -27,22 +27,17 @@ void dut(hls::stream<bit32_t> &strm_out) {
   strm_out.write(put);
 }
 
-unsigned int seed = 0b101101;  // Initial seed
+int seed = 1;  // Initial seed
 const int size = 6;  // LFSR size
 const unsigned int feedbackMask = 0b101011;  // Feedback mask (adjust for desired behavior)
 
 // Function to generate a random number in the range [0, 1)
 theta_type generate_rand() {
     // Generate the next bit in the LFSR sequence
-    bool nextBit = seed & 1;
-    seed >>= 1;
-    if (nextBit) {
-        seed ^= feedbackMask;
-    }
-    // Convert the LFSR output to a random double in the range [0, 1)
+    seed = 1103515245 * seed + 12345; // assume 2^32 wraparound
     theta_type casted_seed = seed;
-    theta_type casted_deno = (1U << size) - 1;
-    return casted_seed/casted_deno;
+    theta_type rand_max = RAND_MAX;
+    return 2.0* casted_seed/rand_max - 1;
 }
 
 
@@ -146,8 +141,8 @@ theta_type gaussian_box_muller()
   // is less than unity
   do
   {
-    x = 2.0 * generate_rand() - 1;
-    y = 2.0 * generate_rand() - 1;
+    x = generate_rand();
+    y = generate_rand();
     euclid_sq = x * x + y * y;
   } while (euclid_sq >= 1.0);
 
