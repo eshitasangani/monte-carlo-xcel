@@ -45,5 +45,5 @@ bitstream: xillydemo.bit
 	@echo "Bitstream saved to $<"
 
 clean:
-	rm -rf monte-carlo *.dat *.prj *.log
+	rm -rf monte-carlo result *.dat *.prj *.log
 	rm -rf zedboard_project* xillydemo.bit

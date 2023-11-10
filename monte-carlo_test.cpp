@@ -10,6 +10,7 @@
 
 int main(int argc, char **argv)
 {
+
   // First we create the parameter list
   int num_sims = 10000000; // Number of simulated asset paths
   theta_type S = 100.0;        // Option price
@@ -19,9 +20,12 @@ int main(int argc, char **argv)
   theta_type T = 1.0;          // One year until expiry
 
   // Then we calculate the call/put values via Monte Carlo
-  theta_type call = monte_carlo_call_price(num_sims, S, K, r, v, T);
-  theta_type put = monte_carlo_put_price(num_sims, S, K, r, v, T);
+  result_type result;
+  monte_carlo_both_price(result, num_sims, S, K, r, v, T);
+  theta_type call = result.call;
+  theta_type put = result.put;
   // Finally we output the parameters and prices
+  std::cout << "Testbench" << std::endl;
   std::cout << "Number of Paths: " << num_sims << std::endl;
   std::cout << "Underlying:      " << S << std::endl;
   std::cout << "Strike:          " << K << std::endl;

@@ -13,8 +13,10 @@ void dut(hls::stream<bit32_t> &strm_out) {
   theta_type T = 1.0;      // One year until expiry
 
   // Then we calculate the call/put values via Monte Carlo
-  theta_type call = monte_carlo_call_price(num_sims, S, K, r, v, T);
-  theta_type put = monte_carlo_put_price(num_sims, S, K, r, v, T);
+  result_type result;
+  monte_carlo_both_price(result, num_sims, S, K, r, v, T);
+  theta_type call = result.call;
+  theta_type put = result.put;
 
   // Write the output to the stream
   strm_out.write(num_sims);
@@ -149,39 +151,26 @@ theta_type gaussian_box_muller()
   return x * custom_sqrt<theta_type>(-2 * custom_log<theta_type>(euclid_sq) / euclid_sq, epsilon);
 }
 
-// Pricing a European vanilla call option with a Monte Carlo method
-theta_type monte_carlo_call_price(const int &num_sims, const theta_type &S, const theta_type &K, const theta_type &r, const theta_type &v, const theta_type &T)
+// Pricing a European vanilla option with a Monte Carlo method
+void monte_carlo_both_price(result_type &result, const int &num_sims, const theta_type &S, const theta_type &K, const theta_type &r, const theta_type &v, const theta_type &T)
 {
   theta_type S_adjust = S * custom_exp<theta_type>(T * (r - 0.5 * v * v));
   theta_type S_cur = 0.0;
-  theta_type payoff_sum = 0.0;
+  theta_type call_payoff_sum = 0.0;
+  theta_type put_payoff_sum = 0.0;
   theta_type epsilon = 0.0001;
 
   for (int i = 0; i < num_sims; i++)
   {
     theta_type gauss_bm = gaussian_box_muller();
     S_cur = S_adjust * custom_exp<theta_type>(custom_sqrt<theta_type>(v * v * T, epsilon) * gauss_bm);
-    payoff_sum += custom_max<theta_type>(S_cur - K, 0.0);
+    call_payoff_sum += custom_max<theta_type>(S_cur - K, 0.0);
+    put_payoff_sum += custom_max<theta_type>(K - S_cur, 0.0);
   }
   theta_type cast_num_sims = num_sims;
-  return (payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
-}
+  theta_type call = (call_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
+  theta_type put = (put_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
 
-// Pricing a European vanilla put option with a Monte Carlo method
-theta_type monte_carlo_put_price(const int &num_sims, const theta_type &S, const theta_type &K, const theta_type &r, const theta_type &v, const theta_type &T)
-{
-  theta_type S_adjust = S * custom_exp<theta_type>(T * (r - 0.5 * v * v));
-  theta_type S_cur = 0.0;
-  theta_type payoff_sum = 0.0;
-  theta_type epsilon = 0.0001;
-
-  for (int i = 0; i < num_sims; i++)
-  {
-    theta_type gauss_bm = gaussian_box_muller();
-    S_cur = S_adjust * custom_exp<theta_type>(custom_sqrt<theta_type>(v * v * T, epsilon) * gauss_bm);
-    payoff_sum += custom_max<theta_type>(K - S_cur, 0.0);
-  }
-
-  theta_type cast_num_sims = num_sims;
-  return (payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
+  result.call = call;
+  result.put = put;
 }
