@@ -3,17 +3,11 @@
 #include "monte-carlo.h"
 
 void dut(hls::stream<bit32_t> &strm_out) {
-  // First we create the parameter list
-  int num_sims = 1000000; // Number of simulated asset paths
-  theta_type S = 100.0;    // Option price
-  theta_type K = 100.0;    // Strike price
-  theta_type r = 0.05;     // Risk-free rate (5%)
-  theta_type v = 0.2;      // Volatility of the underlying (20%)
-  theta_type T = 1.0;      // One year until expiry
+  // First we create the parameter list hard coded in h file
 
   // Then we calculate the call/put values via Monte Carlo
   result_type result;
-  monte_carlo_both_price(result, num_sims, S, K, r, v, T);
+  monte_carlo_both_price(result);
   theta_type call = result.call;
   theta_type put = result.put;
 
@@ -42,24 +36,28 @@ unsigned int pseudo_random(ap_uint<32>& lfsr) {
   return lfsr.to_uint();
 }
 
-constexpr theta_type rand_max_div_two = 2.0 / RAND_MAX;
-
+constexpr theta_type rand_two_div_max = 2.0 / RAND_MAX;
 // Function to generate a random number in the range [0, 1)
 theta_type generate_rand1() {
     theta_type casted_seed = pseudo_random(lfsr1);
-    theta_type rand_max = RAND_MAX;
-    return rand_max_div_two * casted_seed - 1;
+    // theta_type casted_seed = gcc_rand(seed1);
+    return rand_two_div_max * casted_seed - 1;
 }
 // Function to generate a random number in the range [0, 1)
 theta_type generate_rand2() {
     theta_type casted_seed = pseudo_random(lfsr2);
-    theta_type rand_max = RAND_MAX;
-    return rand_max_div_two * casted_seed - 1;
+    // theta_type casted_seed = gcc_rand(seed2);
+    return rand_two_div_max * casted_seed - 1;
 }
 
 template <typename T>
-T custom_log(T x)
+T custom_log(const T& x)
 {
+  if (x <= 0)
+  {
+    std::cerr << "Error: Input must be greater than 0" << std::endl;
+    return -1.0; // Error value
+  }
   
   const int logTerms = 10;
 
@@ -81,7 +79,7 @@ T custom_log(T x)
 }
 
 template <typename T>
-T custom_exp(T x)
+T custom_exp(const T& x)
 {
   T result = 1.0;
   T term = 1.0;
@@ -114,7 +112,7 @@ theta_type gaussian_box_muller()
   // until the square of their "euclidean distance"
   // is less than unity
 
-GAUSS_LABEL:
+  GAUSS_LABEL:
   for (int i = 0; i < 20; i++) {
     temp_x = generate_rand1();
     temp_y = generate_rand2();
@@ -130,25 +128,25 @@ GAUSS_LABEL:
 }
 
 // Pricing a European vanilla option with a Monte Carlo method
-void monte_carlo_both_price(result_type &result, const int &num_sims, const theta_type &S, const theta_type &K, const theta_type &r, const theta_type &v, const theta_type &T)
+void monte_carlo_both_price(result_type &result)
 {
-  theta_type S_adjust = S * custom_exp<theta_type>(T * (r - 0.5 * v * v));
+
+  const theta_type S_adjust = S * custom_exp<theta_type>(T * (r - 0.5 * v * v));
+  const theta_type sqrt_const = hls::sqrt(v * v * T);
   theta_type S_cur = 0.0;
   theta_type call_payoff_sum = 0.0;
   theta_type put_payoff_sum = 0.0;
-  // theta_type gauss_bm[50000];
-  theta_type gauss_bm;
-
+  
   GAUSS_GEN_LABEL:
   for (int i = 0; i < 1000000; i++) {
-    gauss_bm = gaussian_box_muller();
-    S_cur = S_adjust * custom_exp<theta_type>(hls::sqrt(v * v * T) * gauss_bm);
+    theta_type gauss_bm = gaussian_box_muller();
+    S_cur = S_adjust * custom_exp<theta_type>(sqrt_const * gauss_bm);
     theta_type zero1 = 0.0;
     theta_type zero2 = 0.0;
     theta_type call_val = S_cur - K;
     theta_type put_val = K - S_cur;
     call_payoff_sum += hls::fmax(call_val, zero1);
-    put_payoff_sum += hls::fmax(K - S_cur, zero2);
+    put_payoff_sum += hls::fmax(put_val, zero2);
   }
   
 

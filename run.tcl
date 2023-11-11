@@ -38,7 +38,7 @@ set_directive_pipeline gaussian_box_muller/GAUSS_LABEL_ONE
 set_directive_pipeline gaussian_box_muller/GAUSS_LABEL_TWO
 set_directive_pipeline monte_carlo_both_price/GAUSS_GEN_LABEL
 set_directive_pipeline monte_carlo_both_price/OVERALL_LOOP
-set_directive_pipeline -II 1 monte_carlo_both_price/SIMS_LABEL
+set_directive_unroll custom_exp/EXP_LABEL
 
 
 ############################################

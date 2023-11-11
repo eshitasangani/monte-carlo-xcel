@@ -10,28 +10,20 @@ typedef struct result_type result_type;
 
 typedef float theta_type;
 
+constexpr int num_sims = 1000000;      // Number of simulated asset paths
+constexpr theta_type S = 100.0;        // Option price
+constexpr theta_type K = 100.0;        // Strike price
+constexpr theta_type r = 0.05;         // Risk-free rate (5%)
+constexpr theta_type v = 0.2;          // Volatility of the underlying (20%)
+constexpr theta_type T = 1.0;          // One year until expiry
+
 void dut(hls::stream<bit32_t> &strm_out);
-
-template <typename T>
-T custom_max(T a, T b);
-
-template <typename T>
-T custom_abs(T x);
-
-template <typename T>
-T custom_sqrt(T x, T epsilon);
-
-template <typename T>
-T custom_log(T x);
-
-template <typename T>
-T custom_exp(T x);
 
 theta_type generate_rand();
 
 theta_type gaussian_box_muller();
 
-void monte_carlo_both_price(result_type &result, const int &num_sims, const theta_type &S, const theta_type &K, const theta_type &r, const theta_type &v, const theta_type &T);
+void monte_carlo_both_price(result_type &result);
 
 struct result_type {
 theta_type call;

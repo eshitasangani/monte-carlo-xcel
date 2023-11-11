@@ -11,17 +11,11 @@
 int main(int argc, char **argv)
 {
 
-  // First we create the parameter list
-  int num_sims = 1000000; // Number of simulated asset paths
-  theta_type S = 100.0;        // Option price
-  theta_type K = 100.0;        // Strike price
-  theta_type r = 0.05;         // Risk-free rate (5%)
-  theta_type v = 0.2;          // Volatility of the underlying (20%)
-  theta_type T = 1.0;          // One year until expiry
+  // First we create the parameter list hard coded in h file
 
   // Then we calculate the call/put values via Monte Carlo
   result_type result;
-  monte_carlo_both_price(result, num_sims, S, K, r, v, T);
+  monte_carlo_both_price(result);
   theta_type call = result.call;
   theta_type put = result.put;
   // Finally we output the parameters and prices
