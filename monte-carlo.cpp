@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "monte-carlo.h"
 
 typedef double theta_type;
@@ -42,51 +43,6 @@ theta_type generate_rand() {
     return 2.0* casted_seed/rand_max - 1;
 }
 
-
-// A simple implementation of the max
-template <typename T>
-T custom_max(T a, T b)
-{
-  return (b < a) ? a : b;
-}
-template <typename T>
-T custom_abs(T x) {
-    return (x < 0) ? -x : x;
-}
-template <typename T>
-T custom_sqrt(T x, T epsilon) {
-    if (x < 0) {
-        return -1.0;
-    }
-    T guess = x;
-    T nextGuess = 0.5 * (guess + x / guess);
-    // key: 0 value: 152
-    // key: 1 value: 65367
-    // key: 2 value: 1319139
-    // key: 3 value: 4814309
-    // key: 4 value: 6109258
-    // key: 5 value: 24183887
-    // key: 6 value: 2107551
-    // key: 7 value: 906203
-    // key: 8 value: 341471
-    // key: 9 value: 109410
-    // key: 10 value: 31569
-    // key: 11 value: 8540
-    // key: 12 value: 2300
-    // key: 13 value: 625
-    // key: 14 value: 173
-    // key: 15 value: 32
-    // key: 16 value: 12
-    // key: 17 value: 1
-    // key: 19 value: 1
-    while (custom_abs<T>(guess - nextGuess) >= epsilon) {
-        guess = nextGuess;
-        nextGuess = 0.5 * (guess + x / guess);
-    }
-
-    return nextGuess;
-}
-
 template <typename T>
 T custom_log(T x)
 {
@@ -95,6 +51,7 @@ T custom_log(T x)
     std::cerr << "Error: Input must be greater than 0" << std::endl;
     return -1.0; // Error value
   }
+  
   const int logTerms = 10;
 
   T result = 0.0;
@@ -136,7 +93,6 @@ theta_type gaussian_box_muller()
   theta_type x = 0.0;
   theta_type y = 0.0;
   theta_type euclid_sq = 0.0;
-  theta_type epsilon = 0.00001;
 
   // Continue generating two uniform random variables
   // until the square of their "euclidean distance"
@@ -148,7 +104,7 @@ theta_type gaussian_box_muller()
     euclid_sq = x * x + y * y;
   } while (euclid_sq >= 1.0);
 
-  return x * custom_sqrt<theta_type>(-2 * custom_log<theta_type>(euclid_sq) / euclid_sq, epsilon);
+  return x * sqrt(-2 * custom_log<theta_type>(euclid_sq) / euclid_sq);
 }
 
 // Pricing a European vanilla option with a Monte Carlo method
@@ -158,14 +114,13 @@ void monte_carlo_both_price(result_type &result, const int &num_sims, const thet
   theta_type S_cur = 0.0;
   theta_type call_payoff_sum = 0.0;
   theta_type put_payoff_sum = 0.0;
-  theta_type epsilon = 0.0001;
 
   for (int i = 0; i < num_sims; i++)
   {
     theta_type gauss_bm = gaussian_box_muller();
-    S_cur = S_adjust * custom_exp<theta_type>(custom_sqrt<theta_type>(v * v * T, epsilon) * gauss_bm);
-    call_payoff_sum += custom_max<theta_type>(S_cur - K, 0.0);
-    put_payoff_sum += custom_max<theta_type>(K - S_cur, 0.0);
+    S_cur = S_adjust * custom_exp<theta_type>(sqrt(v * v * T) * gauss_bm);
+    call_payoff_sum += fmax(S_cur - K, 0.0);
+    put_payoff_sum += fmax(K - S_cur, 0.0);
   }
   theta_type cast_num_sims = num_sims;
   theta_type call = (call_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
