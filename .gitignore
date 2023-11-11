@@ -2,7 +2,7 @@
 core.*
 
 # Ignore project folder
-monte-carlo.proj
+monte-carlo.prj
 
 # Ignore all log files
 *.log
