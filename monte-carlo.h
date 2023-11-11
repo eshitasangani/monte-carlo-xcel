@@ -8,7 +8,7 @@
 
 typedef struct result_type result_type;
 
-typedef double theta_type;
+typedef float theta_type;
 
 void dut(hls::stream<bit32_t> &strm_out);
 

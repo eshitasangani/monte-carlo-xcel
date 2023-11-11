@@ -2,11 +2,9 @@
 #include <cmath>
 #include "monte-carlo.h"
 
-typedef double theta_type;
-
 void dut(hls::stream<bit32_t> &strm_out) {
   // First we create the parameter list
-  int num_sims = 10000000; // Number of simulated asset paths
+  int num_sims = 1000000; // Number of simulated asset paths
   theta_type S = 100.0;    // Option price
   theta_type K = 100.0;    // Strike price
   theta_type r = 0.05;     // Risk-free rate (5%)
@@ -105,7 +103,7 @@ theta_type gaussian_box_muller()
   // until the square of their "euclidean distance"
   // is less than unity
 
-  GAUSS_LABEL:
+GAUSS_LABEL:
   for (int i = 0; i < 20; i++) {
     temp_x = generate_rand();
     temp_y = generate_rand();
@@ -127,15 +125,23 @@ void monte_carlo_both_price(result_type &result, const int &num_sims, const thet
   theta_type S_cur = 0.0;
   theta_type call_payoff_sum = 0.0;
   theta_type put_payoff_sum = 0.0;
+  theta_type gauss_bm[50000];
+
+  for (int j = 0; j < 20; j++) {
+  GAUSS_GEN_LABEL:
+    for (int i = 0; i < 50000; i++) {
+      gauss_bm[i] = gaussian_box_muller();
+    }
 
   SIMS_LABEL:
-  for (int i = 0; i < num_sims; i++)
-  {
-    theta_type gauss_bm = gaussian_box_muller();
-    S_cur = S_adjust * custom_exp<theta_type>(sqrt(v * v * T) * gauss_bm);
-    call_payoff_sum += fmax(S_cur - K, 0.0);
-    put_payoff_sum += fmax(K - S_cur, 0.0);
+    for (int i = 0; i < 50000; i++) {
+      S_cur = S_adjust * custom_exp<theta_type>(sqrt(v * v * T) * gauss_bm[i]);
+      call_payoff_sum += fmax(S_cur - K, 0.0);
+      put_payoff_sum += fmax(K - S_cur, 0.0);
+    }
+
   }
+
   theta_type cast_num_sims = num_sims;
   theta_type call = (call_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
   theta_type put = (put_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);

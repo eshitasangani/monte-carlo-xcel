@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 {
 
   // First we create the parameter list
-  int num_sims = 10000000; // Number of simulated asset paths
+  int num_sims = 1000000; // Number of simulated asset paths
   theta_type S = 100.0;        // Option price
   theta_type K = 100.0;        // Strike price
   theta_type r = 0.05;         // Risk-free rate (5%)
