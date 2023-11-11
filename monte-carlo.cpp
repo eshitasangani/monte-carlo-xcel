@@ -79,6 +79,7 @@ T custom_sqrt(T x, T epsilon) {
     // key: 16 value: 12
     // key: 17 value: 1
     // key: 19 value: 1
+    SQRT_LABEL:
     while (custom_abs<T>(guess - nextGuess) >= epsilon) {
         guess = nextGuess;
         nextGuess = 0.5 * (guess + x / guess);
@@ -103,6 +104,7 @@ T custom_log(T x)
   T numerator = term;
   T denominator = 1;
 
+  LOG_LABEL:
   for (int i = 1; i <= logTerms; i++)
   {
     result += numerator / denominator;
@@ -121,6 +123,7 @@ T custom_exp(T x)
   T factorial = 1.0;
   const int expTerms = 10;
 
+  EXP_LABEL:
   for (int i = 1; i <= expTerms; i++)
   {
     term *= x / i;
@@ -133,21 +136,31 @@ T custom_exp(T x)
 // box muller algorithm
 theta_type gaussian_box_muller()
 {
-  theta_type x = 0.0;
-  theta_type y = 0.0;
-  theta_type euclid_sq = 0.0;
+  theta_type x = 0.45543;
+  theta_type y = -0.337388;
+  theta_type euclid_sq = 0.353308;
+  
+  theta_type euclid_sq_temp = 0.0;
   theta_type epsilon = 0.00001;
+  theta_type temp_x = 0;
+  theta_type temp_y = 0;
 
   // Continue generating two uniform random variables
   // until the square of their "euclidean distance"
   // is less than unity
-  do
-  {
-    x = generate_rand();
-    y = generate_rand();
-    euclid_sq = x * x + y * y;
-  } while (euclid_sq >= 1.0);
 
+  GAUSS_LABEL:
+  for (int i = 0; i < 20; i++) {
+    temp_x = generate_rand();
+    temp_y = generate_rand();
+    euclid_sq_temp = temp_x * temp_x + temp_y * temp_y;
+    if (euclid_sq_temp < 1.0) {
+      euclid_sq = euclid_sq_temp;
+      x = temp_x;
+      y = temp_y;
+    }
+  }
+  
   return x * custom_sqrt<theta_type>(-2 * custom_log<theta_type>(euclid_sq) / euclid_sq, epsilon);
 }
 
@@ -160,6 +173,7 @@ void monte_carlo_both_price(result_type &result, const int &num_sims, const thet
   theta_type put_payoff_sum = 0.0;
   theta_type epsilon = 0.0001;
 
+  SIMS_LABEL:
   for (int i = 0; i < num_sims; i++)
   {
     theta_type gauss_bm = gaussian_box_muller();

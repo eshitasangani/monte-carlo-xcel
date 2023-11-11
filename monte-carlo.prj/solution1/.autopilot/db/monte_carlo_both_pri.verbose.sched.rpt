@@ -1,0 +1,1225 @@
+
+
+================================================================
+== Vivado HLS Report for 'monte_carlo_both_pri'
+================================================================
+* Date:           Sat Nov 11 13:02:35 2023
+
+* Version:        2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)
+* Project:        monte-carlo.prj
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 9.792 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+---------+---------+----------+-----------+-----------+----------+----------+
+        |               |  Latency (cycles) | Iteration|  Initiation Interval  |   Trip   |          |
+        |   Loop Name   |   min   |   max   |  Latency |  achieved |   target  |   Count  | Pipelined|
+        +---------------+---------+---------+----------+-----------+-----------+----------+----------+
+        |- SIMS_LABEL   |        ?|        ?|         ?|          -|          -|  10000000|    no    |
+        | + SQRT_LABEL  |        ?|        ?|        50|          -|          -|         ?|    no    |
+        +---------------+---------+---------+----------+-----------+-----------+----------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 112
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 77 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 54 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 35 
+35 --> 36 
+36 --> 37 
+37 --> 38 
+38 --> 39 
+39 --> 40 
+40 --> 41 
+41 --> 42 
+42 --> 43 
+43 --> 44 
+44 --> 45 
+45 --> 46 
+46 --> 47 
+47 --> 48 
+48 --> 49 
+49 --> 50 
+50 --> 51 
+51 --> 52 
+52 --> 53 
+53 --> 4 
+54 --> 55 
+55 --> 56 
+56 --> 57 
+57 --> 58 
+58 --> 59 
+59 --> 60 
+60 --> 61 
+61 --> 62 
+62 --> 63 
+63 --> 64 
+64 --> 65 
+65 --> 66 
+66 --> 67 
+67 --> 68 
+68 --> 69 
+69 --> 70 
+70 --> 71 
+71 --> 72 
+72 --> 73 
+73 --> 74 
+74 --> 75 
+75 --> 76 
+76 --> 2 
+77 --> 78 
+78 --> 79 
+79 --> 80 
+80 --> 81 
+81 --> 82 
+82 --> 83 
+83 --> 84 
+84 --> 85 
+85 --> 86 
+86 --> 87 
+87 --> 88 
+88 --> 89 
+89 --> 90 
+90 --> 91 
+91 --> 92 
+92 --> 93 
+93 --> 94 
+94 --> 95 
+95 --> 96 
+96 --> 97 
+97 --> 98 
+98 --> 99 
+99 --> 100 
+100 --> 101 
+101 --> 102 
+102 --> 103 
+103 --> 104 
+104 --> 105 
+105 --> 106 
+106 --> 107 
+107 --> 108 
+108 --> 109 
+109 --> 110 
+110 --> 111 
+111 --> 112 
+112 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.76>
+ST_1 : Operation 113 [1/1] (1.76ns)   --->   "br label %1" [monte-carlo.cpp:184]   --->   Operation 113 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 8.62>
+ST_2 : Operation 114 [1/1] (0.00ns)   --->   "%call_payoff_sum_0 = phi double [ 0.000000e+00, %0 ], [ %call_payoff_sum, %"custom_sqrt<double>.exit" ]"   --->   Operation 114 'phi' 'call_payoff_sum_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 115 [1/1] (0.00ns)   --->   "%put_payoff_sum_0 = phi double [ 0.000000e+00, %0 ], [ %put_payoff_sum, %"custom_sqrt<double>.exit" ]"   --->   Operation 115 'phi' 'put_payoff_sum_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 116 [1/1] (0.00ns)   --->   "%i_0 = phi i24 [ 0, %0 ], [ %i, %"custom_sqrt<double>.exit" ]"   --->   Operation 116 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 117 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10000000, i64 10000000, i64 10000000)"   --->   Operation 117 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 118 [1/1] (2.45ns)   --->   "%icmp_ln184 = icmp eq i24 %i_0, -6777216" [monte-carlo.cpp:184]   --->   Operation 118 'icmp' 'icmp_ln184' <Predicate = true> <Delay = 2.45> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 119 [1/1] (2.31ns)   --->   "%i = add i24 %i_0, 1" [monte-carlo.cpp:184]   --->   Operation 119 'add' 'i' <Predicate = true> <Delay = 2.31> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.31> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 120 [1/1] (0.00ns)   --->   "br i1 %icmp_ln184, label %6, label %2" [monte-carlo.cpp:184]   --->   Operation 120 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 121 [2/2] (0.00ns)   --->   "%gauss_bm = call fastcc double @gaussian_box_muller()" [monte-carlo.cpp:186]   --->   Operation 121 'call' 'gauss_bm' <Predicate = (!icmp_ln184)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 122 [31/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 122 'ddiv' 'tmp_5' <Predicate = (icmp_ln184)> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 123 [31/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 123 'ddiv' 'tmp_1' <Predicate = (icmp_ln184)> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 7.78>
+ST_3 : Operation 124 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([11 x i8]* @p_str1) nounwind" [monte-carlo.cpp:185]   --->   Operation 124 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 125 [1/2] (7.78ns)   --->   "%gauss_bm = call fastcc double @gaussian_box_muller()" [monte-carlo.cpp:186]   --->   Operation 125 'call' 'gauss_bm' <Predicate = true> <Delay = 7.78> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 126 [1/1] (1.76ns)   --->   "br label %3" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 126 'br' <Predicate = true> <Delay = 1.76>
+
+State 4 <SV = 3> <Delay = 8.23>
+ST_4 : Operation 127 [1/1] (0.00ns)   --->   "%guess_0_i = phi double [ 0x3FA47AE147AE147C, %2 ], [ %nextGuess, %5 ]"   --->   Operation 127 'phi' 'guess_0_i' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 128 [1/1] (0.00ns)   --->   "%nextGuess = phi double [ 5.200000e-01, %2 ], [ %phitmp, %5 ]" [monte-carlo.cpp:62->monte-carlo.cpp:187]   --->   Operation 128 'phi' 'nextGuess' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 129 [5/5] (8.23ns)   --->   "%x_assign = fsub double %guess_0_i, %nextGuess" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 129 'dsub' 'x_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 8.23>
+ST_5 : Operation 130 [4/5] (8.23ns)   --->   "%x_assign = fsub double %guess_0_i, %nextGuess" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 130 'dsub' 'x_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 8.23>
+ST_6 : Operation 131 [3/5] (8.23ns)   --->   "%x_assign = fsub double %guess_0_i, %nextGuess" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 131 'dsub' 'x_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 8.23>
+ST_7 : Operation 132 [2/5] (8.23ns)   --->   "%x_assign = fsub double %guess_0_i, %nextGuess" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 132 'dsub' 'x_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 8.23>
+ST_8 : Operation 133 [1/5] (8.23ns)   --->   "%x_assign = fsub double %guess_0_i, %nextGuess" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 133 'dsub' 'x_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 5.46>
+ST_9 : Operation 134 [2/2] (5.46ns)   --->   "%tmp_2 = fcmp olt double %x_assign, 0.000000e+00" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 134 'dcmp' 'tmp_2' <Predicate = true> <Delay = 5.46> <Core = "DCmp">   --->   Core 120 'DCmp' <Latency = 1> <II = 1> <Delay = 5.46> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 8.20>
+ST_10 : Operation 135 [1/1] (0.00ns)   --->   "%bitcast_ln54 = bitcast double %x_assign to i64" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 135 'bitcast' 'bitcast_ln54' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 136 [1/1] (0.00ns)   --->   "%tmp = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %bitcast_ln54, i32 52, i32 62)" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 136 'partselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 137 [1/1] (0.00ns)   --->   "%trunc_ln54 = trunc i64 %bitcast_ln54 to i52" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 137 'trunc' 'trunc_ln54' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 138 [1/1] (1.88ns)   --->   "%icmp_ln54 = icmp ne i11 %tmp, -1" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 138 'icmp' 'icmp_ln54' <Predicate = true> <Delay = 1.88> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 139 [1/1] (2.89ns)   --->   "%icmp_ln54_1 = icmp eq i52 %trunc_ln54, 0" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 139 'icmp' 'icmp_ln54_1' <Predicate = true> <Delay = 2.89> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 140 [1/1] (0.00ns) (grouped into LUT with out node and_ln54)   --->   "%or_ln54 = or i1 %icmp_ln54_1, %icmp_ln54" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 140 'or' 'or_ln54' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 141 [1/2] (5.46ns)   --->   "%tmp_2 = fcmp olt double %x_assign, 0.000000e+00" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 141 'dcmp' 'tmp_2' <Predicate = true> <Delay = 5.46> <Core = "DCmp">   --->   Core 120 'DCmp' <Latency = 1> <II = 1> <Delay = 5.46> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 142 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln54 = and i1 %or_ln54, %tmp_2" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 142 'and' 'and_ln54' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 143 [1/1] (1.76ns)   --->   "br i1 %and_ln54, label %4, label %"custom_abs<double>.exit.i"" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 143 'br' <Predicate = true> <Delay = 1.76>
+ST_10 : Operation 144 [1/1] (0.99ns)   --->   "%xor_ln54 = xor i64 %bitcast_ln54, -9223372036854775808" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 144 'xor' 'xor_ln54' <Predicate = (and_ln54)> <Delay = 0.99> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 145 [1/1] (0.00ns)   --->   "%bitcast_ln54_1 = bitcast i64 %xor_ln54 to double" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 145 'bitcast' 'bitcast_ln54_1' <Predicate = (and_ln54)> <Delay = 0.00>
+ST_10 : Operation 146 [1/1] (1.76ns)   --->   "br label %"custom_abs<double>.exit.i"" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 146 'br' <Predicate = (and_ln54)> <Delay = 1.76>
+
+State 11 <SV = 10> <Delay = 5.46>
+ST_11 : Operation 147 [1/1] (0.00ns)   --->   "%phi_ln54 = phi double [ %bitcast_ln54_1, %4 ], [ %x_assign, %3 ]" [monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 147 'phi' 'phi_ln54' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 148 [1/1] (0.00ns)   --->   "%bitcast_ln83 = bitcast double %phi_ln54 to i64" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 148 'bitcast' 'bitcast_ln83' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 149 [1/1] (0.00ns)   --->   "%tmp_3 = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %bitcast_ln83, i32 52, i32 62)" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 149 'partselect' 'tmp_3' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 150 [1/1] (0.00ns)   --->   "%trunc_ln83 = trunc i64 %bitcast_ln83 to i52" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 150 'trunc' 'trunc_ln83' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 151 [1/1] (1.88ns)   --->   "%icmp_ln83 = icmp ne i11 %tmp_3, -1" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 151 'icmp' 'icmp_ln83' <Predicate = true> <Delay = 1.88> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 152 [1/1] (2.89ns)   --->   "%icmp_ln83_1 = icmp eq i52 %trunc_ln83, 0" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 152 'icmp' 'icmp_ln83_1' <Predicate = true> <Delay = 2.89> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 153 [2/2] (5.46ns)   --->   "%tmp_7 = fcmp oge double %phi_ln54, 1.000000e-04" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 153 'dcmp' 'tmp_7' <Predicate = true> <Delay = 5.46> <Core = "DCmp">   --->   Core 120 'DCmp' <Latency = 1> <II = 1> <Delay = 5.46> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 8.62>
+ST_12 : Operation 154 [1/1] (0.00ns) (grouped into LUT with out node and_ln83)   --->   "%or_ln83 = or i1 %icmp_ln83_1, %icmp_ln83" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 154 'or' 'or_ln83' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 155 [1/2] (5.46ns)   --->   "%tmp_7 = fcmp oge double %phi_ln54, 1.000000e-04" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 155 'dcmp' 'tmp_7' <Predicate = true> <Delay = 5.46> <Core = "DCmp">   --->   Core 120 'DCmp' <Latency = 1> <II = 1> <Delay = 5.46> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 156 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln83 = and i1 %or_ln83, %tmp_7" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 156 'and' 'and_ln83' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 157 [1/1] (0.00ns)   --->   "br i1 %and_ln83, label %5, label %"custom_sqrt<double>.exit"" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 157 'br' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 158 [31/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 158 'ddiv' 'tmp_22_i' <Predicate = (and_ln83)> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 159 [6/6] (7.78ns)   --->   "%tmp_8 = fmul double %nextGuess, %gauss_bm" [monte-carlo.cpp:187]   --->   Operation 159 'dmul' 'tmp_8' <Predicate = (!and_ln83)> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 8.62>
+ST_13 : Operation 160 [30/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 160 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 8.62>
+ST_14 : Operation 161 [29/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 161 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 8.62>
+ST_15 : Operation 162 [28/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 162 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 8.62>
+ST_16 : Operation 163 [27/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 163 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 8.62>
+ST_17 : Operation 164 [26/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 164 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 8.62>
+ST_18 : Operation 165 [25/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 165 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 8.62>
+ST_19 : Operation 166 [24/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 166 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 8.62>
+ST_20 : Operation 167 [23/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 167 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 8.62>
+ST_21 : Operation 168 [22/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 168 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 8.62>
+ST_22 : Operation 169 [21/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 169 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 23 <SV = 22> <Delay = 8.62>
+ST_23 : Operation 170 [20/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 170 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 24 <SV = 23> <Delay = 8.62>
+ST_24 : Operation 171 [19/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 171 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 25 <SV = 24> <Delay = 8.62>
+ST_25 : Operation 172 [18/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 172 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 26 <SV = 25> <Delay = 8.62>
+ST_26 : Operation 173 [17/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 173 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 27 <SV = 26> <Delay = 8.62>
+ST_27 : Operation 174 [16/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 174 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 28 <SV = 27> <Delay = 8.62>
+ST_28 : Operation 175 [15/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 175 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 29 <SV = 28> <Delay = 8.62>
+ST_29 : Operation 176 [14/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 176 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 30 <SV = 29> <Delay = 8.62>
+ST_30 : Operation 177 [13/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 177 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 31 <SV = 30> <Delay = 8.62>
+ST_31 : Operation 178 [12/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 178 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 32 <SV = 31> <Delay = 8.62>
+ST_32 : Operation 179 [11/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 179 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 33 <SV = 32> <Delay = 8.62>
+ST_33 : Operation 180 [10/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 180 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 34 <SV = 33> <Delay = 8.62>
+ST_34 : Operation 181 [9/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 181 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 35 <SV = 34> <Delay = 8.62>
+ST_35 : Operation 182 [8/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 182 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 36 <SV = 35> <Delay = 8.62>
+ST_36 : Operation 183 [7/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 183 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 37 <SV = 36> <Delay = 8.62>
+ST_37 : Operation 184 [6/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 184 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 38 <SV = 37> <Delay = 8.62>
+ST_38 : Operation 185 [5/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 185 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 39 <SV = 38> <Delay = 8.62>
+ST_39 : Operation 186 [4/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 186 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 40 <SV = 39> <Delay = 8.62>
+ST_40 : Operation 187 [3/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 187 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 41 <SV = 40> <Delay = 8.62>
+ST_41 : Operation 188 [2/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 188 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 42 <SV = 41> <Delay = 8.62>
+ST_42 : Operation 189 [1/31] (8.62ns)   --->   "%tmp_22_i = fdiv double 0x3FA47AE147AE147C, %nextGuess" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 189 'ddiv' 'tmp_22_i' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 43 <SV = 42> <Delay = 8.23>
+ST_43 : Operation 190 [5/5] (8.23ns)   --->   "%tmp_23_i = fadd double %nextGuess, %tmp_22_i" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 190 'dadd' 'tmp_23_i' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 44 <SV = 43> <Delay = 8.23>
+ST_44 : Operation 191 [4/5] (8.23ns)   --->   "%tmp_23_i = fadd double %nextGuess, %tmp_22_i" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 191 'dadd' 'tmp_23_i' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 45 <SV = 44> <Delay = 8.23>
+ST_45 : Operation 192 [3/5] (8.23ns)   --->   "%tmp_23_i = fadd double %nextGuess, %tmp_22_i" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 192 'dadd' 'tmp_23_i' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 46 <SV = 45> <Delay = 8.23>
+ST_46 : Operation 193 [2/5] (8.23ns)   --->   "%tmp_23_i = fadd double %nextGuess, %tmp_22_i" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 193 'dadd' 'tmp_23_i' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 47 <SV = 46> <Delay = 8.23>
+ST_47 : Operation 194 [1/5] (8.23ns)   --->   "%tmp_23_i = fadd double %nextGuess, %tmp_22_i" [monte-carlo.cpp:85->monte-carlo.cpp:187]   --->   Operation 194 'dadd' 'tmp_23_i' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 48 <SV = 47> <Delay = 7.78>
+ST_48 : Operation 195 [6/6] (7.78ns)   --->   "%phitmp = fmul double %tmp_23_i, 5.000000e-01" [monte-carlo.cpp:86->monte-carlo.cpp:187]   --->   Operation 195 'dmul' 'phitmp' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 49 <SV = 48> <Delay = 7.78>
+ST_49 : Operation 196 [5/6] (7.78ns)   --->   "%phitmp = fmul double %tmp_23_i, 5.000000e-01" [monte-carlo.cpp:86->monte-carlo.cpp:187]   --->   Operation 196 'dmul' 'phitmp' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 50 <SV = 49> <Delay = 7.78>
+ST_50 : Operation 197 [4/6] (7.78ns)   --->   "%phitmp = fmul double %tmp_23_i, 5.000000e-01" [monte-carlo.cpp:86->monte-carlo.cpp:187]   --->   Operation 197 'dmul' 'phitmp' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 51 <SV = 50> <Delay = 7.78>
+ST_51 : Operation 198 [3/6] (7.78ns)   --->   "%phitmp = fmul double %tmp_23_i, 5.000000e-01" [monte-carlo.cpp:86->monte-carlo.cpp:187]   --->   Operation 198 'dmul' 'phitmp' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 52 <SV = 51> <Delay = 7.78>
+ST_52 : Operation 199 [2/6] (7.78ns)   --->   "%phitmp = fmul double %tmp_23_i, 5.000000e-01" [monte-carlo.cpp:86->monte-carlo.cpp:187]   --->   Operation 199 'dmul' 'phitmp' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 53 <SV = 52> <Delay = 7.78>
+ST_53 : Operation 200 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([11 x i8]* @p_str3) nounwind" [monte-carlo.cpp:83->monte-carlo.cpp:187]   --->   Operation 200 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_53 : Operation 201 [1/6] (7.78ns)   --->   "%phitmp = fmul double %tmp_23_i, 5.000000e-01" [monte-carlo.cpp:86->monte-carlo.cpp:187]   --->   Operation 201 'dmul' 'phitmp' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_53 : Operation 202 [1/1] (0.00ns)   --->   "br label %3" [monte-carlo.cpp:86->monte-carlo.cpp:187]   --->   Operation 202 'br' <Predicate = true> <Delay = 0.00>
+
+State 54 <SV = 12> <Delay = 7.78>
+ST_54 : Operation 203 [5/6] (7.78ns)   --->   "%tmp_8 = fmul double %nextGuess, %gauss_bm" [monte-carlo.cpp:187]   --->   Operation 203 'dmul' 'tmp_8' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 55 <SV = 13> <Delay = 7.78>
+ST_55 : Operation 204 [4/6] (7.78ns)   --->   "%tmp_8 = fmul double %nextGuess, %gauss_bm" [monte-carlo.cpp:187]   --->   Operation 204 'dmul' 'tmp_8' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 56 <SV = 14> <Delay = 7.78>
+ST_56 : Operation 205 [3/6] (7.78ns)   --->   "%tmp_8 = fmul double %nextGuess, %gauss_bm" [monte-carlo.cpp:187]   --->   Operation 205 'dmul' 'tmp_8' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 57 <SV = 15> <Delay = 7.78>
+ST_57 : Operation 206 [2/6] (7.78ns)   --->   "%tmp_8 = fmul double %nextGuess, %gauss_bm" [monte-carlo.cpp:187]   --->   Operation 206 'dmul' 'tmp_8' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 58 <SV = 16> <Delay = 7.78>
+ST_58 : Operation 207 [1/6] (7.78ns)   --->   "%tmp_8 = fmul double %nextGuess, %gauss_bm" [monte-carlo.cpp:187]   --->   Operation 207 'dmul' 'tmp_8' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_58 : Operation 208 [2/2] (0.00ns)   --->   "%tmp_9 = call fastcc double @"custom_exp<double>"(double %tmp_8)" [monte-carlo.cpp:187]   --->   Operation 208 'call' 'tmp_9' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 59 <SV = 17> <Delay = 7.78>
+ST_59 : Operation 209 [1/2] (0.00ns)   --->   "%tmp_9 = call fastcc double @"custom_exp<double>"(double %tmp_8)" [monte-carlo.cpp:187]   --->   Operation 209 'call' 'tmp_9' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_59 : Operation 210 [6/6] (7.78ns)   --->   "%S_cur = fmul double %tmp_9, 0x4059C2E8B55BA1C6" [monte-carlo.cpp:187]   --->   Operation 210 'dmul' 'S_cur' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 60 <SV = 18> <Delay = 7.78>
+ST_60 : Operation 211 [5/6] (7.78ns)   --->   "%S_cur = fmul double %tmp_9, 0x4059C2E8B55BA1C6" [monte-carlo.cpp:187]   --->   Operation 211 'dmul' 'S_cur' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 61 <SV = 19> <Delay = 7.78>
+ST_61 : Operation 212 [4/6] (7.78ns)   --->   "%S_cur = fmul double %tmp_9, 0x4059C2E8B55BA1C6" [monte-carlo.cpp:187]   --->   Operation 212 'dmul' 'S_cur' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 62 <SV = 20> <Delay = 7.78>
+ST_62 : Operation 213 [3/6] (7.78ns)   --->   "%S_cur = fmul double %tmp_9, 0x4059C2E8B55BA1C6" [monte-carlo.cpp:187]   --->   Operation 213 'dmul' 'S_cur' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 63 <SV = 21> <Delay = 7.78>
+ST_63 : Operation 214 [2/6] (7.78ns)   --->   "%S_cur = fmul double %tmp_9, 0x4059C2E8B55BA1C6" [monte-carlo.cpp:187]   --->   Operation 214 'dmul' 'S_cur' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 64 <SV = 22> <Delay = 7.78>
+ST_64 : Operation 215 [1/6] (7.78ns)   --->   "%S_cur = fmul double %tmp_9, 0x4059C2E8B55BA1C6" [monte-carlo.cpp:187]   --->   Operation 215 'dmul' 'S_cur' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 65 <SV = 23> <Delay = 8.23>
+ST_65 : Operation 216 [5/5] (8.23ns)   --->   "%a_assign = fadd double %S_cur, -1.000000e+02" [monte-carlo.cpp:188]   --->   Operation 216 'dadd' 'a_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_65 : Operation 217 [5/5] (8.23ns)   --->   "%a_assign_1 = fsub double 1.000000e+02, %S_cur" [monte-carlo.cpp:189]   --->   Operation 217 'dsub' 'a_assign_1' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 66 <SV = 24> <Delay = 8.23>
+ST_66 : Operation 218 [4/5] (8.23ns)   --->   "%a_assign = fadd double %S_cur, -1.000000e+02" [monte-carlo.cpp:188]   --->   Operation 218 'dadd' 'a_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_66 : Operation 219 [4/5] (8.23ns)   --->   "%a_assign_1 = fsub double 1.000000e+02, %S_cur" [monte-carlo.cpp:189]   --->   Operation 219 'dsub' 'a_assign_1' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 67 <SV = 25> <Delay = 8.23>
+ST_67 : Operation 220 [3/5] (8.23ns)   --->   "%a_assign = fadd double %S_cur, -1.000000e+02" [monte-carlo.cpp:188]   --->   Operation 220 'dadd' 'a_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_67 : Operation 221 [3/5] (8.23ns)   --->   "%a_assign_1 = fsub double 1.000000e+02, %S_cur" [monte-carlo.cpp:189]   --->   Operation 221 'dsub' 'a_assign_1' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 68 <SV = 26> <Delay = 8.23>
+ST_68 : Operation 222 [2/5] (8.23ns)   --->   "%a_assign = fadd double %S_cur, -1.000000e+02" [monte-carlo.cpp:188]   --->   Operation 222 'dadd' 'a_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_68 : Operation 223 [2/5] (8.23ns)   --->   "%a_assign_1 = fsub double 1.000000e+02, %S_cur" [monte-carlo.cpp:189]   --->   Operation 223 'dsub' 'a_assign_1' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 69 <SV = 27> <Delay = 8.23>
+ST_69 : Operation 224 [1/5] (8.23ns)   --->   "%a_assign = fadd double %S_cur, -1.000000e+02" [monte-carlo.cpp:188]   --->   Operation 224 'dadd' 'a_assign' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_69 : Operation 225 [1/5] (8.23ns)   --->   "%a_assign_1 = fsub double 1.000000e+02, %S_cur" [monte-carlo.cpp:189]   --->   Operation 225 'dsub' 'a_assign_1' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 70 <SV = 28> <Delay = 5.46>
+ST_70 : Operation 226 [2/2] (5.46ns)   --->   "%tmp_4 = fcmp ogt double %a_assign, 0.000000e+00" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 226 'dcmp' 'tmp_4' <Predicate = true> <Delay = 5.46> <Core = "DCmp">   --->   Core 120 'DCmp' <Latency = 1> <II = 1> <Delay = 5.46> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+ST_70 : Operation 227 [2/2] (5.46ns)   --->   "%tmp_10 = fcmp ogt double %a_assign_1, 0.000000e+00" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 227 'dcmp' 'tmp_10' <Predicate = true> <Delay = 5.46> <Core = "DCmp">   --->   Core 120 'DCmp' <Latency = 1> <II = 1> <Delay = 5.46> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+
+State 71 <SV = 29> <Delay = 6.94>
+ST_71 : Operation 228 [1/1] (0.00ns)   --->   "%bitcast_ln50 = bitcast double %a_assign to i64" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 228 'bitcast' 'bitcast_ln50' <Predicate = true> <Delay = 0.00>
+ST_71 : Operation 229 [1/1] (0.00ns)   --->   "%tmp_s = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %bitcast_ln50, i32 52, i32 62)" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 229 'partselect' 'tmp_s' <Predicate = true> <Delay = 0.00>
+ST_71 : Operation 230 [1/1] (0.00ns)   --->   "%trunc_ln50 = trunc i64 %bitcast_ln50 to i52" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 230 'trunc' 'trunc_ln50' <Predicate = true> <Delay = 0.00>
+ST_71 : Operation 231 [1/1] (1.88ns)   --->   "%icmp_ln50 = icmp ne i11 %tmp_s, -1" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 231 'icmp' 'icmp_ln50' <Predicate = true> <Delay = 1.88> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 232 [1/1] (2.89ns)   --->   "%icmp_ln50_1 = icmp eq i52 %trunc_ln50, 0" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 232 'icmp' 'icmp_ln50_1' <Predicate = true> <Delay = 2.89> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 233 [1/1] (0.00ns) (grouped into LUT with out node select_ln50)   --->   "%or_ln50 = or i1 %icmp_ln50_1, %icmp_ln50" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 233 'or' 'or_ln50' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 234 [1/2] (5.46ns)   --->   "%tmp_4 = fcmp ogt double %a_assign, 0.000000e+00" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 234 'dcmp' 'tmp_4' <Predicate = true> <Delay = 5.46> <Core = "DCmp">   --->   Core 120 'DCmp' <Latency = 1> <II = 1> <Delay = 5.46> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 235 [1/1] (0.00ns) (grouped into LUT with out node select_ln50)   --->   "%and_ln50 = and i1 %or_ln50, %tmp_4" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 235 'and' 'and_ln50' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 236 [1/1] (1.48ns) (out node of the LUT)   --->   "%select_ln50 = select i1 %and_ln50, double %a_assign, double 0.000000e+00" [monte-carlo.cpp:50->monte-carlo.cpp:188]   --->   Operation 236 'select' 'select_ln50' <Predicate = true> <Delay = 1.48> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.48> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_71 : Operation 237 [1/1] (0.00ns)   --->   "%bitcast_ln50_1 = bitcast double %a_assign_1 to i64" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 237 'bitcast' 'bitcast_ln50_1' <Predicate = true> <Delay = 0.00>
+ST_71 : Operation 238 [1/1] (0.00ns)   --->   "%tmp_6 = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %bitcast_ln50_1, i32 52, i32 62)" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 238 'partselect' 'tmp_6' <Predicate = true> <Delay = 0.00>
+ST_71 : Operation 239 [1/1] (0.00ns)   --->   "%trunc_ln50_1 = trunc i64 %bitcast_ln50_1 to i52" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 239 'trunc' 'trunc_ln50_1' <Predicate = true> <Delay = 0.00>
+ST_71 : Operation 240 [1/1] (1.88ns)   --->   "%icmp_ln50_2 = icmp ne i11 %tmp_6, -1" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 240 'icmp' 'icmp_ln50_2' <Predicate = true> <Delay = 1.88> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 241 [1/1] (2.89ns)   --->   "%icmp_ln50_3 = icmp eq i52 %trunc_ln50_1, 0" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 241 'icmp' 'icmp_ln50_3' <Predicate = true> <Delay = 2.89> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.89> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 242 [1/1] (0.00ns) (grouped into LUT with out node select_ln50_1)   --->   "%or_ln50_1 = or i1 %icmp_ln50_3, %icmp_ln50_2" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 242 'or' 'or_ln50_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 243 [1/2] (5.46ns)   --->   "%tmp_10 = fcmp ogt double %a_assign_1, 0.000000e+00" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 243 'dcmp' 'tmp_10' <Predicate = true> <Delay = 5.46> <Core = "DCmp">   --->   Core 120 'DCmp' <Latency = 1> <II = 1> <Delay = 5.46> <FuncUnit> <Opcode : 'dcmp'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 244 [1/1] (0.00ns) (grouped into LUT with out node select_ln50_1)   --->   "%and_ln50_1 = and i1 %or_ln50_1, %tmp_10" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 244 'and' 'and_ln50_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 245 [1/1] (1.48ns) (out node of the LUT)   --->   "%select_ln50_1 = select i1 %and_ln50_1, double %a_assign_1, double 0.000000e+00" [monte-carlo.cpp:50->monte-carlo.cpp:189]   --->   Operation 245 'select' 'select_ln50_1' <Predicate = true> <Delay = 1.48> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.48> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 72 <SV = 30> <Delay = 8.23>
+ST_72 : Operation 246 [5/5] (8.23ns)   --->   "%call_payoff_sum = fadd double %call_payoff_sum_0, %select_ln50" [monte-carlo.cpp:188]   --->   Operation 246 'dadd' 'call_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_72 : Operation 247 [5/5] (8.23ns)   --->   "%put_payoff_sum = fadd double %put_payoff_sum_0, %select_ln50_1" [monte-carlo.cpp:189]   --->   Operation 247 'dadd' 'put_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 73 <SV = 31> <Delay = 8.23>
+ST_73 : Operation 248 [4/5] (8.23ns)   --->   "%call_payoff_sum = fadd double %call_payoff_sum_0, %select_ln50" [monte-carlo.cpp:188]   --->   Operation 248 'dadd' 'call_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_73 : Operation 249 [4/5] (8.23ns)   --->   "%put_payoff_sum = fadd double %put_payoff_sum_0, %select_ln50_1" [monte-carlo.cpp:189]   --->   Operation 249 'dadd' 'put_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 74 <SV = 32> <Delay = 8.23>
+ST_74 : Operation 250 [3/5] (8.23ns)   --->   "%call_payoff_sum = fadd double %call_payoff_sum_0, %select_ln50" [monte-carlo.cpp:188]   --->   Operation 250 'dadd' 'call_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 251 [3/5] (8.23ns)   --->   "%put_payoff_sum = fadd double %put_payoff_sum_0, %select_ln50_1" [monte-carlo.cpp:189]   --->   Operation 251 'dadd' 'put_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 75 <SV = 33> <Delay = 8.23>
+ST_75 : Operation 252 [2/5] (8.23ns)   --->   "%call_payoff_sum = fadd double %call_payoff_sum_0, %select_ln50" [monte-carlo.cpp:188]   --->   Operation 252 'dadd' 'call_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_75 : Operation 253 [2/5] (8.23ns)   --->   "%put_payoff_sum = fadd double %put_payoff_sum_0, %select_ln50_1" [monte-carlo.cpp:189]   --->   Operation 253 'dadd' 'put_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 76 <SV = 34> <Delay = 8.23>
+ST_76 : Operation 254 [1/5] (8.23ns)   --->   "%call_payoff_sum = fadd double %call_payoff_sum_0, %select_ln50" [monte-carlo.cpp:188]   --->   Operation 254 'dadd' 'call_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 255 [1/5] (8.23ns)   --->   "%put_payoff_sum = fadd double %put_payoff_sum_0, %select_ln50_1" [monte-carlo.cpp:189]   --->   Operation 255 'dadd' 'put_payoff_sum' <Predicate = true> <Delay = 8.23> <Core = "DAddSub">   --->   Core 115 'DAddSub' <Latency = 4> <II = 1> <Delay = 8.23> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 256 [1/1] (0.00ns)   --->   "br label %1" [monte-carlo.cpp:184]   --->   Operation 256 'br' <Predicate = true> <Delay = 0.00>
+
+State 77 <SV = 2> <Delay = 8.62>
+ST_77 : Operation 257 [30/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 257 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 258 [30/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 258 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 78 <SV = 3> <Delay = 8.62>
+ST_78 : Operation 259 [29/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 259 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 260 [29/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 260 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 79 <SV = 4> <Delay = 8.62>
+ST_79 : Operation 261 [28/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 261 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_79 : Operation 262 [28/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 262 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 80 <SV = 5> <Delay = 8.62>
+ST_80 : Operation 263 [27/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 263 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_80 : Operation 264 [27/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 264 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 81 <SV = 6> <Delay = 8.62>
+ST_81 : Operation 265 [26/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 265 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 266 [26/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 266 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 82 <SV = 7> <Delay = 8.62>
+ST_82 : Operation 267 [25/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 267 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_82 : Operation 268 [25/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 268 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 83 <SV = 8> <Delay = 8.62>
+ST_83 : Operation 269 [24/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 269 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_83 : Operation 270 [24/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 270 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 84 <SV = 9> <Delay = 8.62>
+ST_84 : Operation 271 [23/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 271 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_84 : Operation 272 [23/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 272 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 85 <SV = 10> <Delay = 8.62>
+ST_85 : Operation 273 [22/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 273 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 274 [22/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 274 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 86 <SV = 11> <Delay = 8.62>
+ST_86 : Operation 275 [21/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 275 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_86 : Operation 276 [21/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 276 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 87 <SV = 12> <Delay = 8.62>
+ST_87 : Operation 277 [20/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 277 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_87 : Operation 278 [20/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 278 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 88 <SV = 13> <Delay = 8.62>
+ST_88 : Operation 279 [19/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 279 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_88 : Operation 280 [19/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 280 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 89 <SV = 14> <Delay = 8.62>
+ST_89 : Operation 281 [18/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 281 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_89 : Operation 282 [18/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 282 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 90 <SV = 15> <Delay = 8.62>
+ST_90 : Operation 283 [17/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 283 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_90 : Operation 284 [17/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 284 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 91 <SV = 16> <Delay = 8.62>
+ST_91 : Operation 285 [16/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 285 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_91 : Operation 286 [16/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 286 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 92 <SV = 17> <Delay = 8.62>
+ST_92 : Operation 287 [15/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 287 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_92 : Operation 288 [15/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 288 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 93 <SV = 18> <Delay = 8.62>
+ST_93 : Operation 289 [14/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 289 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_93 : Operation 290 [14/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 290 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 94 <SV = 19> <Delay = 8.62>
+ST_94 : Operation 291 [13/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 291 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_94 : Operation 292 [13/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 292 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 95 <SV = 20> <Delay = 8.62>
+ST_95 : Operation 293 [12/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 293 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_95 : Operation 294 [12/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 294 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 96 <SV = 21> <Delay = 8.62>
+ST_96 : Operation 295 [11/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 295 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_96 : Operation 296 [11/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 296 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 97 <SV = 22> <Delay = 8.62>
+ST_97 : Operation 297 [10/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 297 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_97 : Operation 298 [10/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 298 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 98 <SV = 23> <Delay = 8.62>
+ST_98 : Operation 299 [9/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 299 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_98 : Operation 300 [9/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 300 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 99 <SV = 24> <Delay = 8.62>
+ST_99 : Operation 301 [8/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 301 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_99 : Operation 302 [8/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 302 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 100 <SV = 25> <Delay = 8.62>
+ST_100 : Operation 303 [7/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 303 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_100 : Operation 304 [7/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 304 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 101 <SV = 26> <Delay = 8.62>
+ST_101 : Operation 305 [6/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 305 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_101 : Operation 306 [6/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 306 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 102 <SV = 27> <Delay = 8.62>
+ST_102 : Operation 307 [5/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 307 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_102 : Operation 308 [5/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 308 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 103 <SV = 28> <Delay = 8.62>
+ST_103 : Operation 309 [4/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 309 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_103 : Operation 310 [4/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 310 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 104 <SV = 29> <Delay = 8.62>
+ST_104 : Operation 311 [3/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 311 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_104 : Operation 312 [3/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 312 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 105 <SV = 30> <Delay = 8.62>
+ST_105 : Operation 313 [2/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 313 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_105 : Operation 314 [2/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 314 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 106 <SV = 31> <Delay = 8.62>
+ST_106 : Operation 315 [1/31] (8.62ns)   --->   "%tmp_5 = fdiv double %call_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:192]   --->   Operation 315 'ddiv' 'tmp_5' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+ST_106 : Operation 316 [1/31] (8.62ns)   --->   "%tmp_1 = fdiv double %put_payoff_sum_0, 1.000000e+07" [monte-carlo.cpp:193]   --->   Operation 316 'ddiv' 'tmp_1' <Predicate = true> <Delay = 8.62> <Core = "DDiv">   --->   Core 117 'DDiv' <Latency = 30> <II = 1> <Delay = 8.62> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 107 <SV = 32> <Delay = 7.78>
+ST_107 : Operation 317 [6/6] (7.78ns)   --->   "%call = fmul double %tmp_5, 0x3FEE7078B0A726A6" [monte-carlo.cpp:192]   --->   Operation 317 'dmul' 'call' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_107 : Operation 318 [6/6] (7.78ns)   --->   "%put = fmul double %tmp_1, 0x3FEE7078B0A726A6" [monte-carlo.cpp:193]   --->   Operation 318 'dmul' 'put' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 108 <SV = 33> <Delay = 7.78>
+ST_108 : Operation 319 [5/6] (7.78ns)   --->   "%call = fmul double %tmp_5, 0x3FEE7078B0A726A6" [monte-carlo.cpp:192]   --->   Operation 319 'dmul' 'call' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_108 : Operation 320 [5/6] (7.78ns)   --->   "%put = fmul double %tmp_1, 0x3FEE7078B0A726A6" [monte-carlo.cpp:193]   --->   Operation 320 'dmul' 'put' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 109 <SV = 34> <Delay = 7.78>
+ST_109 : Operation 321 [4/6] (7.78ns)   --->   "%call = fmul double %tmp_5, 0x3FEE7078B0A726A6" [monte-carlo.cpp:192]   --->   Operation 321 'dmul' 'call' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_109 : Operation 322 [4/6] (7.78ns)   --->   "%put = fmul double %tmp_1, 0x3FEE7078B0A726A6" [monte-carlo.cpp:193]   --->   Operation 322 'dmul' 'put' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 110 <SV = 35> <Delay = 7.78>
+ST_110 : Operation 323 [3/6] (7.78ns)   --->   "%call = fmul double %tmp_5, 0x3FEE7078B0A726A6" [monte-carlo.cpp:192]   --->   Operation 323 'dmul' 'call' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_110 : Operation 324 [3/6] (7.78ns)   --->   "%put = fmul double %tmp_1, 0x3FEE7078B0A726A6" [monte-carlo.cpp:193]   --->   Operation 324 'dmul' 'put' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 111 <SV = 36> <Delay = 7.78>
+ST_111 : Operation 325 [2/6] (7.78ns)   --->   "%call = fmul double %tmp_5, 0x3FEE7078B0A726A6" [monte-carlo.cpp:192]   --->   Operation 325 'dmul' 'call' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_111 : Operation 326 [2/6] (7.78ns)   --->   "%put = fmul double %tmp_1, 0x3FEE7078B0A726A6" [monte-carlo.cpp:193]   --->   Operation 326 'dmul' 'put' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 112 <SV = 37> <Delay = 7.78>
+ST_112 : Operation 327 [1/6] (7.78ns)   --->   "%call = fmul double %tmp_5, 0x3FEE7078B0A726A6" [monte-carlo.cpp:192]   --->   Operation 327 'dmul' 'call' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_112 : Operation 328 [1/6] (7.78ns)   --->   "%put = fmul double %tmp_1, 0x3FEE7078B0A726A6" [monte-carlo.cpp:193]   --->   Operation 328 'dmul' 'put' <Predicate = true> <Delay = 7.78> <Core = "DMul">   --->   Core 116 'DMul' <Latency = 5> <II = 1> <Delay = 7.78> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_112 : Operation 329 [1/1] (0.00ns)   --->   "%mrv = insertvalue { double, double } undef, double %call, 0" [monte-carlo.cpp:197]   --->   Operation 329 'insertvalue' 'mrv' <Predicate = true> <Delay = 0.00>
+ST_112 : Operation 330 [1/1] (0.00ns)   --->   "%mrv_1 = insertvalue { double, double } %mrv, double %put, 1" [monte-carlo.cpp:197]   --->   Operation 330 'insertvalue' 'mrv_1' <Predicate = true> <Delay = 0.00>
+ST_112 : Operation 331 [1/1] (0.00ns)   --->   "ret { double, double } %mrv_1" [monte-carlo.cpp:197]   --->   Operation 331 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('call_payoff_sum') with incoming values : ('call_payoff_sum', monte-carlo.cpp:188) [5]  (1.77 ns)
+
+ <State 2>: 8.62ns
+The critical path consists of the following:
+	'phi' operation ('call_payoff_sum') with incoming values : ('call_payoff_sum', monte-carlo.cpp:188) [5]  (0 ns)
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 3>: 7.79ns
+The critical path consists of the following:
+	'call' operation ('gauss_bm', monte-carlo.cpp:186) to 'gaussian_box_muller' [14]  (7.79 ns)
+
+ <State 4>: 8.23ns
+The critical path consists of the following:
+	'phi' operation ('guess') with incoming values : ('phitmp', monte-carlo.cpp:86->monte-carlo.cpp:187) [17]  (0 ns)
+	'dsub' operation ('x', monte-carlo.cpp:83->monte-carlo.cpp:187) [19]  (8.23 ns)
+
+ <State 5>: 8.23ns
+The critical path consists of the following:
+	'dsub' operation ('x', monte-carlo.cpp:83->monte-carlo.cpp:187) [19]  (8.23 ns)
+
+ <State 6>: 8.23ns
+The critical path consists of the following:
+	'dsub' operation ('x', monte-carlo.cpp:83->monte-carlo.cpp:187) [19]  (8.23 ns)
+
+ <State 7>: 8.23ns
+The critical path consists of the following:
+	'dsub' operation ('x', monte-carlo.cpp:83->monte-carlo.cpp:187) [19]  (8.23 ns)
+
+ <State 8>: 8.23ns
+The critical path consists of the following:
+	'dsub' operation ('x', monte-carlo.cpp:83->monte-carlo.cpp:187) [19]  (8.23 ns)
+
+ <State 9>: 5.46ns
+The critical path consists of the following:
+	'dcmp' operation ('tmp_2', monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187) [26]  (5.46 ns)
+
+ <State 10>: 8.21ns
+The critical path consists of the following:
+	'dcmp' operation ('tmp_2', monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187) [26]  (5.46 ns)
+	'and' operation ('and_ln54', monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187) [27]  (0.978 ns)
+	multiplexor before 'phi' operation ('phi_ln54', monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187) with incoming values : ('x', monte-carlo.cpp:83->monte-carlo.cpp:187) ('bitcast_ln54_1', monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187) [34]  (1.77 ns)
+
+ <State 11>: 5.46ns
+The critical path consists of the following:
+	'phi' operation ('phi_ln54', monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187) with incoming values : ('x', monte-carlo.cpp:83->monte-carlo.cpp:187) ('bitcast_ln54_1', monte-carlo.cpp:54->monte-carlo.cpp:83->monte-carlo.cpp:187) [34]  (0 ns)
+	'dcmp' operation ('tmp_7', monte-carlo.cpp:83->monte-carlo.cpp:187) [41]  (5.46 ns)
+
+ <State 12>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 13>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 14>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 15>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 16>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 17>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 18>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 19>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 20>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 21>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 22>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 23>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 24>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 25>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 26>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 27>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 28>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 29>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 30>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 31>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 32>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 33>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 34>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 35>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 36>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 37>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 38>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 39>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 40>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 41>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 42>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_22_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [46]  (8.62 ns)
+
+ <State 43>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_23_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [47]  (8.23 ns)
+
+ <State 44>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_23_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [47]  (8.23 ns)
+
+ <State 45>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_23_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [47]  (8.23 ns)
+
+ <State 46>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_23_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [47]  (8.23 ns)
+
+ <State 47>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_23_i', monte-carlo.cpp:85->monte-carlo.cpp:187) [47]  (8.23 ns)
+
+ <State 48>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('phitmp', monte-carlo.cpp:86->monte-carlo.cpp:187) [48]  (7.79 ns)
+
+ <State 49>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('phitmp', monte-carlo.cpp:86->monte-carlo.cpp:187) [48]  (7.79 ns)
+
+ <State 50>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('phitmp', monte-carlo.cpp:86->monte-carlo.cpp:187) [48]  (7.79 ns)
+
+ <State 51>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('phitmp', monte-carlo.cpp:86->monte-carlo.cpp:187) [48]  (7.79 ns)
+
+ <State 52>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('phitmp', monte-carlo.cpp:86->monte-carlo.cpp:187) [48]  (7.79 ns)
+
+ <State 53>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('phitmp', monte-carlo.cpp:86->monte-carlo.cpp:187) [48]  (7.79 ns)
+
+ <State 54>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_8', monte-carlo.cpp:187) [51]  (7.79 ns)
+
+ <State 55>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_8', monte-carlo.cpp:187) [51]  (7.79 ns)
+
+ <State 56>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_8', monte-carlo.cpp:187) [51]  (7.79 ns)
+
+ <State 57>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_8', monte-carlo.cpp:187) [51]  (7.79 ns)
+
+ <State 58>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_8', monte-carlo.cpp:187) [51]  (7.79 ns)
+
+ <State 59>: 7.79ns
+The critical path consists of the following:
+	'call' operation ('tmp_9', monte-carlo.cpp:187) to 'custom_exp<double>' [52]  (0 ns)
+	'dmul' operation ('S_cur', monte-carlo.cpp:187) [53]  (7.79 ns)
+
+ <State 60>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('S_cur', monte-carlo.cpp:187) [53]  (7.79 ns)
+
+ <State 61>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('S_cur', monte-carlo.cpp:187) [53]  (7.79 ns)
+
+ <State 62>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('S_cur', monte-carlo.cpp:187) [53]  (7.79 ns)
+
+ <State 63>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('S_cur', monte-carlo.cpp:187) [53]  (7.79 ns)
+
+ <State 64>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('S_cur', monte-carlo.cpp:187) [53]  (7.79 ns)
+
+ <State 65>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('a', monte-carlo.cpp:188) [54]  (8.23 ns)
+
+ <State 66>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('a', monte-carlo.cpp:188) [54]  (8.23 ns)
+
+ <State 67>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('a', monte-carlo.cpp:188) [54]  (8.23 ns)
+
+ <State 68>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('a', monte-carlo.cpp:188) [54]  (8.23 ns)
+
+ <State 69>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('a', monte-carlo.cpp:188) [54]  (8.23 ns)
+
+ <State 70>: 5.46ns
+The critical path consists of the following:
+	'dcmp' operation ('tmp_4', monte-carlo.cpp:50->monte-carlo.cpp:188) [61]  (5.46 ns)
+
+ <State 71>: 6.94ns
+The critical path consists of the following:
+	'dcmp' operation ('tmp_4', monte-carlo.cpp:50->monte-carlo.cpp:188) [61]  (5.46 ns)
+	'and' operation ('and_ln50', monte-carlo.cpp:50->monte-carlo.cpp:188) [62]  (0 ns)
+	'select' operation ('select_ln50', monte-carlo.cpp:50->monte-carlo.cpp:188) [63]  (1.48 ns)
+
+ <State 72>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('call_payoff_sum', monte-carlo.cpp:188) [64]  (8.23 ns)
+
+ <State 73>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('call_payoff_sum', monte-carlo.cpp:188) [64]  (8.23 ns)
+
+ <State 74>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('call_payoff_sum', monte-carlo.cpp:188) [64]  (8.23 ns)
+
+ <State 75>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('call_payoff_sum', monte-carlo.cpp:188) [64]  (8.23 ns)
+
+ <State 76>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('call_payoff_sum', monte-carlo.cpp:188) [64]  (8.23 ns)
+
+ <State 77>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 78>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 79>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 80>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 81>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 82>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 83>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 84>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 85>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 86>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 87>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 88>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 89>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 90>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 91>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 92>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 93>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 94>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 95>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 96>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 97>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 98>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 99>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 100>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 101>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 102>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 103>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 104>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 105>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 106>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_5', monte-carlo.cpp:192) [78]  (8.62 ns)
+
+ <State 107>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('call', monte-carlo.cpp:192) [79]  (7.79 ns)
+
+ <State 108>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('call', monte-carlo.cpp:192) [79]  (7.79 ns)
+
+ <State 109>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('call', monte-carlo.cpp:192) [79]  (7.79 ns)
+
+ <State 110>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('call', monte-carlo.cpp:192) [79]  (7.79 ns)
+
+ <State 111>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('call', monte-carlo.cpp:192) [79]  (7.79 ns)
+
+ <State 112>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('call', monte-carlo.cpp:192) [79]  (7.79 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+	State 40
+	State 41
+	State 42
+	State 43
+	State 44
+	State 45
+	State 46
+	State 47
+	State 48
+	State 49
+	State 50
+	State 51
+	State 52
+	State 53
+	State 54
+	State 55
+	State 56
+	State 57
+	State 58
+	State 59
+	State 60
+	State 61
+	State 62
+	State 63
+	State 64
+	State 65
+	State 66
+	State 67
+	State 68
+	State 69
+	State 70
+	State 71
+	State 72
+	State 73
+	State 74
+	State 75
+	State 76
+	State 77
+	State 78
+	State 79
+	State 80
+	State 81
+	State 82
+	State 83
+	State 84
+	State 85
+	State 86
+	State 87
+	State 88
+	State 89
+	State 90
+	State 91
+	State 92
+	State 93
+	State 94
+	State 95
+	State 96
+	State 97
+	State 98
+	State 99
+	State 100
+	State 101
+	State 102
+	State 103
+	State 104
+	State 105
+	State 106
+	State 107
+	State 108
+	State 109
+	State 110
+	State 111
+	State 112
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
