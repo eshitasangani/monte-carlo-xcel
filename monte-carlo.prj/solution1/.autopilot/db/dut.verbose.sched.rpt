@@ -1,0 +1,271 @@
+
+
+================================================================
+== Vivado HLS Report for 'dut'
+================================================================
+* Date:           Sat Nov 11 14:56:15 2023
+
+* Version:        2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)
+* Project:        monte-carlo.prj
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  | 10.00 ns | 13.434 ns |   1.25 ns  |
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +----------+----------+-----------+-----------+----------+----------+---------+
+    |   Latency (cycles)  |   Latency (absolute)  |       Interval      | Pipeline|
+    |    min   |    max   |    min    |    max    |    min   |    max   |   Type  |
+    +----------+----------+-----------+-----------+----------+----------+---------+
+    |  85005987|  85005987| 1.142 sec | 1.142 sec |  85005987|  85005987|   none  |
+    +----------+----------+-----------+-----------+----------+----------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 8
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.63>
+ST_1 : Operation 9 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %strm_out_V_V, i32 1000000)" [monte-carlo.cpp:21]   --->   Operation 9 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 0> <FIFO>
+
+State 2 <SV = 1> <Delay = 3.63>
+ST_2 : Operation 10 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %strm_out_V_V, i32 100)" [monte-carlo.cpp:22]   --->   Operation 10 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 0> <FIFO>
+
+State 3 <SV = 2> <Delay = 3.63>
+ST_3 : Operation 11 [2/2] (0.00ns)   --->   "%call_ret = call fastcc { float, float } @monte_carlo_both_pri()" [monte-carlo.cpp:16]   --->   Operation 11 'call' 'call_ret' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 12 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %strm_out_V_V, i32 100)" [monte-carlo.cpp:23]   --->   Operation 12 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 0> <FIFO>
+
+State 4 <SV = 3> <Delay = 5.70>
+ST_4 : Operation 13 [1/2] (5.70ns)   --->   "%call_ret = call fastcc { float, float } @monte_carlo_both_pri()" [monte-carlo.cpp:16]   --->   Operation 13 'call' 'call_ret' <Predicate = true> <Delay = 5.70> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 14 [1/1] (0.00ns)   --->   "%result_call = extractvalue { float, float } %call_ret, 0" [monte-carlo.cpp:16]   --->   Operation 14 'extractvalue' 'result_call' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 15 [1/1] (0.00ns)   --->   "%result_put = extractvalue { float, float } %call_ret, 1" [monte-carlo.cpp:16]   --->   Operation 15 'extractvalue' 'result_put' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 16 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %strm_out_V_V, i32 0)" [monte-carlo.cpp:24]   --->   Operation 16 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 0> <FIFO>
+
+State 5 <SV = 4> <Delay = 8.66>
+ST_5 : Operation 17 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %strm_out_V_V, i32 0)" [monte-carlo.cpp:25]   --->   Operation 17 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 0> <FIFO>
+ST_5 : Operation 18 [1/1] (0.00ns)   --->   "%reg_V = bitcast float %result_call to i32" [monte-carlo.cpp:27]   --->   Operation 18 'bitcast' 'reg_V' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 19 [1/1] (0.00ns)   --->   "%trunc_ln262 = trunc i32 %reg_V to i31" [monte-carlo.cpp:27]   --->   Operation 19 'trunc' 'trunc_ln262' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 20 [1/1] (0.00ns)   --->   "%p_Result_s = call i1 @_ssdm_op_BitSelect.i1.i32.i32(i32 %reg_V, i32 31)" [monte-carlo.cpp:27]   --->   Operation 20 'bitselect' 'p_Result_s' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 21 [1/1] (0.00ns)   --->   "%p_Result_s_14 = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %reg_V, i32 23, i32 30)" [monte-carlo.cpp:27]   --->   Operation 21 'partselect' 'p_Result_s_14' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 22 [1/1] (0.00ns)   --->   "%exp_V = zext i8 %p_Result_s_14 to i9" [monte-carlo.cpp:27]   --->   Operation 22 'zext' 'exp_V' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 23 [1/1] (0.00ns)   --->   "%trunc_ln270 = trunc i32 %reg_V to i23" [monte-carlo.cpp:27]   --->   Operation 23 'trunc' 'trunc_ln270' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 24 [1/1] (0.00ns)   --->   "%tmp = call i24 @_ssdm_op_BitConcatenate.i24.i1.i23(i1 true, i23 %trunc_ln270)" [monte-carlo.cpp:27]   --->   Operation 24 'bitconcatenate' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 25 [1/1] (2.47ns)   --->   "%icmp_ln278 = icmp eq i31 %trunc_ln262, 0" [monte-carlo.cpp:27]   --->   Operation 25 'icmp' 'icmp_ln278' <Predicate = true> <Delay = 2.47> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 26 [1/1] (1.82ns)   --->   "%sh_amt = sub i9 150, %exp_V" [monte-carlo.cpp:27]   --->   Operation 26 'sub' 'sh_amt' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 27 [1/1] (0.00ns) (grouped into LUT with out node select_ln285)   --->   "%sext_ln281 = sext i9 %sh_amt to i24" [monte-carlo.cpp:27]   --->   Operation 27 'sext' 'sext_ln281' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 28 [1/1] (1.55ns)   --->   "%icmp_ln282 = icmp eq i8 %p_Result_s_14, -106" [monte-carlo.cpp:27]   --->   Operation 28 'icmp' 'icmp_ln282' <Predicate = true> <Delay = 1.55> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 29 [1/1] (1.66ns)   --->   "%icmp_ln284 = icmp sgt i9 %sh_amt, 0" [monte-carlo.cpp:27]   --->   Operation 29 'icmp' 'icmp_ln284' <Predicate = true> <Delay = 1.66> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 30 [1/1] (1.66ns)   --->   "%icmp_ln285 = icmp slt i9 %sh_amt, 25" [monte-carlo.cpp:27]   --->   Operation 30 'icmp' 'icmp_ln285' <Predicate = true> <Delay = 1.66> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 31 [1/1] (1.82ns)   --->   "%sh_amt_1 = sub i9 0, %sh_amt" [monte-carlo.cpp:27]   --->   Operation 31 'sub' 'sh_amt_1' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 32 [1/1] (0.00ns)   --->   "%tmp_15 = call i4 @_ssdm_op_PartSelect.i4.i9.i32.i32(i9 %sh_amt_1, i32 5, i32 8)" [monte-carlo.cpp:27]   --->   Operation 32 'partselect' 'tmp_15' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 33 [1/1] (1.30ns)   --->   "%icmp_ln295 = icmp slt i4 %tmp_15, 1" [monte-carlo.cpp:27]   --->   Operation 33 'icmp' 'icmp_ln295' <Predicate = true> <Delay = 1.30> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 34 [1/1] (0.00ns) (grouped into LUT with out node select_ln285)   --->   "%lshr_ln286 = lshr i24 %tmp, %sext_ln281" [monte-carlo.cpp:27]   --->   Operation 34 'lshr' 'lshr_ln286' <Predicate = true> <Delay = 0.00> <Core = "Shift">   --->   Core 28 'Shift' <Latency = 0> <II = 1> <Delay = 4.20> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 35 [1/1] (0.00ns) (grouped into LUT with out node select_ln282)   --->   "%xor_ln278 = xor i1 %icmp_ln278, true" [monte-carlo.cpp:27]   --->   Operation 35 'xor' 'xor_ln278' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 36 [1/1] (0.00ns) (grouped into LUT with out node select_ln282)   --->   "%and_ln282 = and i1 %icmp_ln282, %xor_ln278" [monte-carlo.cpp:27]   --->   Operation 36 'and' 'and_ln282' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 37 [1/1] (0.97ns) (out node of the LUT)   --->   "%select_ln282 = select i1 %and_ln282, i24 %tmp, i24 0" [monte-carlo.cpp:27]   --->   Operation 37 'select' 'select_ln282' <Predicate = true> <Delay = 0.97> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_5 : Operation 38 [1/1] (0.97ns)   --->   "%or_ln282 = or i1 %icmp_ln278, %icmp_ln282" [monte-carlo.cpp:27]   --->   Operation 38 'or' 'or_ln282' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 39 [1/1] (0.00ns) (grouped into LUT with out node and_ln284)   --->   "%xor_ln282 = xor i1 %or_ln282, true" [monte-carlo.cpp:27]   --->   Operation 39 'xor' 'xor_ln282' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 40 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln284 = and i1 %icmp_ln284, %xor_ln282" [monte-carlo.cpp:27]   --->   Operation 40 'and' 'and_ln284' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 41 [1/1] (0.00ns) (grouped into LUT with out node select_ln285)   --->   "%and_ln285 = and i1 %and_ln284, %icmp_ln285" [monte-carlo.cpp:27]   --->   Operation 41 'and' 'and_ln285' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 42 [1/1] (4.20ns) (out node of the LUT)   --->   "%select_ln285 = select i1 %and_ln285, i24 %lshr_ln286, i24 %select_ln282" [monte-carlo.cpp:27]   --->   Operation 42 'select' 'select_ln285' <Predicate = true> <Delay = 4.20> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_5 : Operation 43 [1/1] (0.00ns) (grouped into LUT with out node and_ln295)   --->   "%or_ln284 = or i1 %or_ln282, %icmp_ln284" [monte-carlo.cpp:27]   --->   Operation 43 'or' 'or_ln284' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 44 [1/1] (0.00ns) (grouped into LUT with out node and_ln295)   --->   "%xor_ln284 = xor i1 %or_ln284, true" [monte-carlo.cpp:27]   --->   Operation 44 'xor' 'xor_ln284' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 45 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln295 = and i1 %icmp_ln295, %xor_ln284" [monte-carlo.cpp:27]   --->   Operation 45 'and' 'and_ln295' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 8.66>
+ST_6 : Operation 46 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %strm_out_V_V, i32 1)" [monte-carlo.cpp:26]   --->   Operation 46 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 0> <FIFO>
+ST_6 : Operation 47 [1/1] (0.00ns) (grouped into LUT with out node select_ln278)   --->   "%zext_ln283 = zext i24 %tmp to i32" [monte-carlo.cpp:27]   --->   Operation 47 'zext' 'zext_ln283' <Predicate = (and_ln295 & !icmp_ln278)> <Delay = 0.00>
+ST_6 : Operation 48 [1/1] (0.00ns) (grouped into LUT with out node select_ln278)   --->   "%sext_ln294 = sext i9 %sh_amt_1 to i32" [monte-carlo.cpp:27]   --->   Operation 48 'sext' 'sext_ln294' <Predicate = (and_ln295 & !icmp_ln278)> <Delay = 0.00>
+ST_6 : Operation 49 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_1)   --->   "%tmp_16 = call i1 @_ssdm_op_BitSelect.i1.i32.i32(i32 %reg_V, i32 31)" [monte-carlo.cpp:27]   --->   Operation 49 'bitselect' 'tmp_16' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 50 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_1)   --->   "%select_ln288 = select i1 %tmp_16, i32 -1, i32 0" [monte-carlo.cpp:27]   --->   Operation 50 'select' 'select_ln288' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 51 [1/1] (0.00ns) (grouped into LUT with out node select_ln278)   --->   "%shl_ln297 = shl i32 %zext_ln283, %sext_ln294" [monte-carlo.cpp:27]   --->   Operation 51 'shl' 'shl_ln297' <Predicate = (and_ln295 & !icmp_ln278)> <Delay = 0.00> <Core = "Shift">   --->   Core 28 'Shift' <Latency = 0> <II = 1> <Delay = 4.20> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 52 [1/1] (0.00ns) (grouped into LUT with out node select_ln278)   --->   "%zext_ln285 = zext i24 %select_ln285 to i32" [monte-carlo.cpp:27]   --->   Operation 52 'zext' 'zext_ln285' <Predicate = (!and_ln295 & !icmp_ln278)> <Delay = 0.00>
+ST_6 : Operation 53 [1/1] (0.00ns) (grouped into LUT with out node select_ln278)   --->   "%select_ln295 = select i1 %and_ln295, i32 %shl_ln297, i32 %zext_ln285" [monte-carlo.cpp:27]   --->   Operation 53 'select' 'select_ln295' <Predicate = (!icmp_ln278)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 54 [1/1] (4.20ns) (out node of the LUT)   --->   "%select_ln278 = select i1 %icmp_ln278, i32 0, i32 %select_ln295" [monte-carlo.cpp:27]   --->   Operation 54 'select' 'select_ln278' <Predicate = true> <Delay = 4.20> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 55 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_1)   --->   "%xor_ln285 = xor i1 %icmp_ln285, true" [monte-carlo.cpp:27]   --->   Operation 55 'xor' 'xor_ln285' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 56 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_1)   --->   "%and_ln285_1 = and i1 %and_ln284, %xor_ln285" [monte-carlo.cpp:27]   --->   Operation 56 'and' 'and_ln285_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 57 [1/1] (0.99ns) (out node of the LUT)   --->   "%select_ln285_1 = select i1 %and_ln285_1, i32 %select_ln288, i32 %select_ln278" [monte-carlo.cpp:27]   --->   Operation 57 'select' 'select_ln285_1' <Predicate = true> <Delay = 0.99> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 58 [1/1] (2.55ns)   --->   "%sub_ln461 = sub i32 0, %select_ln285_1" [monte-carlo.cpp:27]   --->   Operation 58 'sub' 'sub_ln461' <Predicate = (p_Result_s)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 59 [1/1] (0.69ns)   --->   "%tmp_V = select i1 %p_Result_s, i32 %sub_ln461, i32 %select_ln285_1" [monte-carlo.cpp:27]   --->   Operation 59 'select' 'tmp_V' <Predicate = true> <Delay = 0.69> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 60 [1/1] (0.00ns)   --->   "%reg_V_1 = bitcast float %result_put to i32" [monte-carlo.cpp:28]   --->   Operation 60 'bitcast' 'reg_V_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 61 [1/1] (0.00ns)   --->   "%trunc_ln262_1 = trunc i32 %reg_V_1 to i31" [monte-carlo.cpp:28]   --->   Operation 61 'trunc' 'trunc_ln262_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 62 [1/1] (0.00ns)   --->   "%p_Result_6 = call i1 @_ssdm_op_BitSelect.i1.i32.i32(i32 %reg_V_1, i32 31)" [monte-carlo.cpp:28]   --->   Operation 62 'bitselect' 'p_Result_6' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 63 [1/1] (0.00ns)   --->   "%p_Result_2 = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %reg_V_1, i32 23, i32 30)" [monte-carlo.cpp:28]   --->   Operation 63 'partselect' 'p_Result_2' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 64 [1/1] (0.00ns)   --->   "%exp_V_1 = zext i8 %p_Result_2 to i9" [monte-carlo.cpp:28]   --->   Operation 64 'zext' 'exp_V_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 65 [1/1] (0.00ns)   --->   "%trunc_ln270_1 = trunc i32 %reg_V_1 to i23" [monte-carlo.cpp:28]   --->   Operation 65 'trunc' 'trunc_ln270_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 66 [1/1] (0.00ns)   --->   "%tmp_4 = call i24 @_ssdm_op_BitConcatenate.i24.i1.i23(i1 true, i23 %trunc_ln270_1)" [monte-carlo.cpp:28]   --->   Operation 66 'bitconcatenate' 'tmp_4' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 67 [1/1] (2.47ns)   --->   "%icmp_ln278_1 = icmp eq i31 %trunc_ln262_1, 0" [monte-carlo.cpp:28]   --->   Operation 67 'icmp' 'icmp_ln278_1' <Predicate = true> <Delay = 2.47> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 68 [1/1] (1.82ns)   --->   "%sh_amt_2 = sub i9 150, %exp_V_1" [monte-carlo.cpp:28]   --->   Operation 68 'sub' 'sh_amt_2' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 69 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_2)   --->   "%sext_ln281_1 = sext i9 %sh_amt_2 to i24" [monte-carlo.cpp:28]   --->   Operation 69 'sext' 'sext_ln281_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 70 [1/1] (1.55ns)   --->   "%icmp_ln282_1 = icmp eq i8 %p_Result_2, -106" [monte-carlo.cpp:28]   --->   Operation 70 'icmp' 'icmp_ln282_1' <Predicate = true> <Delay = 1.55> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 71 [1/1] (1.66ns)   --->   "%icmp_ln284_1 = icmp sgt i9 %sh_amt_2, 0" [monte-carlo.cpp:28]   --->   Operation 71 'icmp' 'icmp_ln284_1' <Predicate = true> <Delay = 1.66> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 72 [1/1] (1.66ns)   --->   "%icmp_ln285_1 = icmp slt i9 %sh_amt_2, 25" [monte-carlo.cpp:28]   --->   Operation 72 'icmp' 'icmp_ln285_1' <Predicate = true> <Delay = 1.66> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 73 [1/1] (1.82ns)   --->   "%sh_amt_3 = sub i9 0, %sh_amt_2" [monte-carlo.cpp:28]   --->   Operation 73 'sub' 'sh_amt_3' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 74 [1/1] (0.00ns)   --->   "%tmp_18 = call i4 @_ssdm_op_PartSelect.i4.i9.i32.i32(i9 %sh_amt_3, i32 5, i32 8)" [monte-carlo.cpp:28]   --->   Operation 74 'partselect' 'tmp_18' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 75 [1/1] (1.30ns)   --->   "%icmp_ln295_1 = icmp slt i4 %tmp_18, 1" [monte-carlo.cpp:28]   --->   Operation 75 'icmp' 'icmp_ln295_1' <Predicate = true> <Delay = 1.30> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 76 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_2)   --->   "%lshr_ln286_1 = lshr i24 %tmp_4, %sext_ln281_1" [monte-carlo.cpp:28]   --->   Operation 76 'lshr' 'lshr_ln286_1' <Predicate = true> <Delay = 0.00> <Core = "Shift">   --->   Core 28 'Shift' <Latency = 0> <II = 1> <Delay = 4.20> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 77 [1/1] (0.00ns) (grouped into LUT with out node select_ln282_1)   --->   "%xor_ln278_1 = xor i1 %icmp_ln278_1, true" [monte-carlo.cpp:28]   --->   Operation 77 'xor' 'xor_ln278_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 78 [1/1] (0.00ns) (grouped into LUT with out node select_ln282_1)   --->   "%and_ln282_1 = and i1 %icmp_ln282_1, %xor_ln278_1" [monte-carlo.cpp:28]   --->   Operation 78 'and' 'and_ln282_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 79 [1/1] (0.97ns) (out node of the LUT)   --->   "%select_ln282_1 = select i1 %and_ln282_1, i24 %tmp_4, i24 0" [monte-carlo.cpp:28]   --->   Operation 79 'select' 'select_ln282_1' <Predicate = true> <Delay = 0.97> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 80 [1/1] (0.97ns)   --->   "%or_ln282_1 = or i1 %icmp_ln278_1, %icmp_ln282_1" [monte-carlo.cpp:28]   --->   Operation 80 'or' 'or_ln282_1' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 81 [1/1] (0.00ns) (grouped into LUT with out node and_ln284_1)   --->   "%xor_ln282_1 = xor i1 %or_ln282_1, true" [monte-carlo.cpp:28]   --->   Operation 81 'xor' 'xor_ln282_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 82 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln284_1 = and i1 %icmp_ln284_1, %xor_ln282_1" [monte-carlo.cpp:28]   --->   Operation 82 'and' 'and_ln284_1' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 83 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_2)   --->   "%and_ln285_2 = and i1 %and_ln284_1, %icmp_ln285_1" [monte-carlo.cpp:28]   --->   Operation 83 'and' 'and_ln285_2' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 84 [1/1] (4.20ns) (out node of the LUT)   --->   "%select_ln285_2 = select i1 %and_ln285_2, i24 %lshr_ln286_1, i24 %select_ln282_1" [monte-carlo.cpp:28]   --->   Operation 84 'select' 'select_ln285_2' <Predicate = true> <Delay = 4.20> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 85 [1/1] (0.00ns) (grouped into LUT with out node and_ln295_1)   --->   "%or_ln284_1 = or i1 %or_ln282_1, %icmp_ln284_1" [monte-carlo.cpp:28]   --->   Operation 85 'or' 'or_ln284_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 86 [1/1] (0.00ns) (grouped into LUT with out node and_ln295_1)   --->   "%xor_ln284_1 = xor i1 %or_ln284_1, true" [monte-carlo.cpp:28]   --->   Operation 86 'xor' 'xor_ln284_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 87 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln295_1 = and i1 %icmp_ln295_1, %xor_ln284_1" [monte-carlo.cpp:28]   --->   Operation 87 'and' 'and_ln295_1' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 8.44>
+ST_7 : Operation 88 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %strm_out_V_V, i32 %tmp_V)" [monte-carlo.cpp:27]   --->   Operation 88 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 0> <FIFO>
+ST_7 : Operation 89 [1/1] (0.00ns) (grouped into LUT with out node select_ln278_1)   --->   "%zext_ln283_1 = zext i24 %tmp_4 to i32" [monte-carlo.cpp:28]   --->   Operation 89 'zext' 'zext_ln283_1' <Predicate = (and_ln295_1 & !icmp_ln278_1)> <Delay = 0.00>
+ST_7 : Operation 90 [1/1] (0.00ns) (grouped into LUT with out node select_ln278_1)   --->   "%sext_ln294_1 = sext i9 %sh_amt_3 to i32" [monte-carlo.cpp:28]   --->   Operation 90 'sext' 'sext_ln294_1' <Predicate = (and_ln295_1 & !icmp_ln278_1)> <Delay = 0.00>
+ST_7 : Operation 91 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_3)   --->   "%tmp_19 = call i1 @_ssdm_op_BitSelect.i1.i32.i32(i32 %reg_V_1, i32 31)" [monte-carlo.cpp:28]   --->   Operation 91 'bitselect' 'tmp_19' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 92 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_3)   --->   "%select_ln288_1 = select i1 %tmp_19, i32 -1, i32 0" [monte-carlo.cpp:28]   --->   Operation 92 'select' 'select_ln288_1' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_7 : Operation 93 [1/1] (0.00ns) (grouped into LUT with out node select_ln278_1)   --->   "%shl_ln297_1 = shl i32 %zext_ln283_1, %sext_ln294_1" [monte-carlo.cpp:28]   --->   Operation 93 'shl' 'shl_ln297_1' <Predicate = (and_ln295_1 & !icmp_ln278_1)> <Delay = 0.00> <Core = "Shift">   --->   Core 28 'Shift' <Latency = 0> <II = 1> <Delay = 4.20> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 94 [1/1] (0.00ns) (grouped into LUT with out node select_ln278_1)   --->   "%zext_ln285_1 = zext i24 %select_ln285_2 to i32" [monte-carlo.cpp:28]   --->   Operation 94 'zext' 'zext_ln285_1' <Predicate = (!and_ln295_1 & !icmp_ln278_1)> <Delay = 0.00>
+ST_7 : Operation 95 [1/1] (0.00ns) (grouped into LUT with out node select_ln278_1)   --->   "%select_ln295_1 = select i1 %and_ln295_1, i32 %shl_ln297_1, i32 %zext_ln285_1" [monte-carlo.cpp:28]   --->   Operation 95 'select' 'select_ln295_1' <Predicate = (!icmp_ln278_1)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_7 : Operation 96 [1/1] (4.20ns) (out node of the LUT)   --->   "%select_ln278_1 = select i1 %icmp_ln278_1, i32 0, i32 %select_ln295_1" [monte-carlo.cpp:28]   --->   Operation 96 'select' 'select_ln278_1' <Predicate = true> <Delay = 4.20> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_7 : Operation 97 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_3)   --->   "%xor_ln285_1 = xor i1 %icmp_ln285_1, true" [monte-carlo.cpp:28]   --->   Operation 97 'xor' 'xor_ln285_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 98 [1/1] (0.00ns) (grouped into LUT with out node select_ln285_3)   --->   "%and_ln285_3 = and i1 %and_ln284_1, %xor_ln285_1" [monte-carlo.cpp:28]   --->   Operation 98 'and' 'and_ln285_3' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 99 [1/1] (0.99ns) (out node of the LUT)   --->   "%select_ln285_3 = select i1 %and_ln285_3, i32 %select_ln288_1, i32 %select_ln278_1" [monte-carlo.cpp:28]   --->   Operation 99 'select' 'select_ln285_3' <Predicate = true> <Delay = 0.99> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_7 : Operation 100 [1/1] (2.55ns)   --->   "%sub_ln461_1 = sub i32 0, %select_ln285_3" [monte-carlo.cpp:28]   --->   Operation 100 'sub' 'sub_ln461_1' <Predicate = (p_Result_6)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 101 [1/1] (0.69ns)   --->   "%tmp_V_4 = select i1 %p_Result_6, i32 %sub_ln461_1, i32 %select_ln285_3" [monte-carlo.cpp:28]   --->   Operation 101 'select' 'tmp_V_4' <Predicate = true> <Delay = 0.69> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 3.63>
+ST_8 : Operation 102 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecInterface(i32* %strm_out_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)"   --->   Operation 102 'specinterface' 'empty' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 103 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %strm_out_V_V), !map !76"   --->   Operation 103 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 104 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([4 x i8]* @dut_str) nounwind"   --->   Operation 104 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 105 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i32P(i32* %strm_out_V_V, i32 %tmp_V_4)" [monte-carlo.cpp:28]   --->   Operation 105 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 0> <FIFO>
+ST_8 : Operation 106 [1/1] (0.00ns)   --->   "ret void" [monte-carlo.cpp:29]   --->   Operation 106 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 3.63ns
+The critical path consists of the following:
+	fifo write on port 'strm_out_V_V' (monte-carlo.cpp:21) [10]  (3.63 ns)
+
+ <State 2>: 3.63ns
+The critical path consists of the following:
+	fifo write on port 'strm_out_V_V' (monte-carlo.cpp:22) [11]  (3.63 ns)
+
+ <State 3>: 3.63ns
+The critical path consists of the following:
+	fifo write on port 'strm_out_V_V' (monte-carlo.cpp:23) [12]  (3.63 ns)
+
+ <State 4>: 5.7ns
+The critical path consists of the following:
+	'call' operation ('call_ret', monte-carlo.cpp:16) to 'monte_carlo_both_pri' [7]  (5.7 ns)
+
+ <State 5>: 8.67ns
+The critical path consists of the following:
+	'sub' operation ('sh_amt', monte-carlo.cpp:27) [24]  (1.82 ns)
+	'icmp' operation ('icmp_ln284', monte-carlo.cpp:27) [28]  (1.66 ns)
+	'and' operation ('and_ln284', monte-carlo.cpp:27) [43]  (0.978 ns)
+	'and' operation ('and_ln285', monte-carlo.cpp:27) [44]  (0 ns)
+	'select' operation ('select_ln285', monte-carlo.cpp:27) [45]  (4.2 ns)
+
+ <State 6>: 8.67ns
+The critical path consists of the following:
+	'sub' operation ('sh_amt', monte-carlo.cpp:28) [66]  (1.82 ns)
+	'icmp' operation ('icmp_ln284_1', monte-carlo.cpp:28) [70]  (1.66 ns)
+	'and' operation ('and_ln284_1', monte-carlo.cpp:28) [85]  (0.978 ns)
+	'and' operation ('and_ln285_2', monte-carlo.cpp:28) [86]  (0 ns)
+	'select' operation ('select_ln285_2', monte-carlo.cpp:28) [87]  (4.2 ns)
+
+ <State 7>: 8.45ns
+The critical path consists of the following:
+	'shl' operation ('shl_ln297_1', monte-carlo.cpp:28) [79]  (0 ns)
+	'select' operation ('select_ln295_1', monte-carlo.cpp:28) [92]  (0 ns)
+	'select' operation ('select_ln278_1', monte-carlo.cpp:28) [93]  (4.2 ns)
+	'select' operation ('select_ln285_3', monte-carlo.cpp:28) [96]  (0.993 ns)
+	'sub' operation ('sub_ln461_1', monte-carlo.cpp:28) [97]  (2.55 ns)
+	'select' operation ('tmp.V', monte-carlo.cpp:28) [98]  (0.698 ns)
+
+ <State 8>: 3.63ns
+The critical path consists of the following:
+	fifo write on port 'strm_out_V_V' (monte-carlo.cpp:28) [99]  (3.63 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

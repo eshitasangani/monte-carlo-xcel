@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Messages>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_631" tag="SCHEDULE" content="Option &apos;relax_ii_for_timing&apos; is enabled, will increase II to preserve clock frequency constraints."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1312" tag="" content="Analyzing design file &apos;monte-carlo.cpp&apos; ..."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Linking Time (s): cpu = 00:00:21 ; elapsed = 00:00:27 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 640 ; free virtual = 24791"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Pragmas Time (s): cpu = 00:00:21 ; elapsed = 00:00:27 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 640 ; free virtual = 24791"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1467" tag="" content="Starting code transformations ..."/>
+	<Message severity="INFO" prefix="[XFORM 203-603]" key="XFORM_INLINE_STATUS_221" tag="" content="Inlining function &apos;generate_rand&apos; into &apos;gaussian_box_muller&apos; (monte-carlo.cpp:109)."/>
+	<Message severity="INFO" prefix="[XFORM 203-603]" key="XFORM_INLINE_STATUS_221" tag="" content="Inlining function &apos;generate_rand&apos; into &apos;gaussian_box_muller&apos; (monte-carlo.cpp:108)."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Standard Transforms Time (s): cpu = 00:00:23 ; elapsed = 00:00:29 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 777 ; free virtual = 24931"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1472" tag="" content="Checking synthesizability ..."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;custom_log&lt;float&gt;&apos; into &apos;gaussian_box_muller&apos; (monte-carlo.cpp:118) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::data&apos; into &apos;fp_struct&lt;double&gt;::to_double&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:512) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::to_double&apos; into &apos;fp_struct&lt;double&gt;::to_ieee&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:526) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::data&apos; into &apos;fp_struct&lt;double&gt;::to_int&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:499) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;generic_isnan&lt;double&gt;&apos; into &apos;generic_fmax&lt;double&gt;&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_fmax.h:27) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::to_ieee&apos; into &apos;generic_fmax&lt;double&gt;&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_fmax.h:30) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::to_int&apos; into &apos;generic_fmax&lt;double&gt;&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_fmax.h:38) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fmax&apos; into &apos;monte_carlo_both_price&apos; (monte-carlo.cpp:139) automatically."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Synthesizability Time (s): cpu = 00:00:23 ; elapsed = 00:00:29 . Memory (MB): peak = 1176.535 ; gain = 534.043 ; free physical = 704 ; free virtual = 24860"/>
+	<Message severity="INFO" prefix="[XFORM 203-502]" key="XFORM_AUTO_UNROLL_STATUS_250" tag="" content="Unrolling all loops for pipelining in function &apos;gaussian_box_muller&apos; (monte-carlo.cpp:38:27)."/>
+	<Message severity="INFO" prefix="[XFORM 203-502]" key="XFORM_AUTO_UNROLL_STATUS_250" tag="" content="Unrolling all loops for pipelining in function &apos;custom_log&lt;float&gt;&apos; (monte-carlo.cpp:45)."/>
+	<Message severity="INFO" prefix="[XFORM 203-502]" key="XFORM_AUTO_UNROLL_STATUS_250" tag="" content="Unrolling all loops for pipelining in function &apos;custom_exp&lt;float&gt;&apos; (monte-carlo.cpp:73)."/>
+	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;GAUSS_LABEL&apos; (monte-carlo.cpp:107) in function &apos;gaussian_box_muller&apos; completely with a factor of 20."/>
+	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;LOG_LABEL&apos; (monte-carlo.cpp:63) in function &apos;custom_log&lt;float&gt;&apos; completely with a factor of 10."/>
+	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;EXP_LABEL&apos; (monte-carlo.cpp:82) in function &apos;custom_exp&lt;float&gt;&apos; completely with a factor of 10."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;custom_log&lt;float&gt;&apos; into &apos;gaussian_box_muller&apos; (monte-carlo.cpp:118) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::data&apos; into &apos;fp_struct&lt;double&gt;::to_double&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:512) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::to_double&apos; into &apos;fp_struct&lt;double&gt;::to_ieee&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:526) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::data&apos; into &apos;fp_struct&lt;double&gt;::to_int&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:499) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;generic_isnan&lt;double&gt;&apos; into &apos;generic_fmax&lt;double&gt;&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_fmax.h:27) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::to_ieee&apos; into &apos;generic_fmax&lt;double&gt;&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_fmax.h:30) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fp_struct&lt;double&gt;::to_int&apos; into &apos;generic_fmax&lt;double&gt;&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_fmax.h:38) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;generic_fmax&lt;double&gt;&apos; into &apos;fmax&apos; (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/hlsmath/src/c/fmaxdouble.cpp:7) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;custom_exp&lt;float&gt;&apos; into &apos;monte_carlo_both_price&apos; (monte-carlo.cpp:124) automatically."/>
+	<Message severity="INFO" prefix="[XFORM 203-401]" key="XFORM_IFCONV_STATUS_239" tag="" content="Performing if-conversion on hyperblock from (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/hlsmath/src/c/fmaxdouble.cpp:6:22) to (/wrk/2019.sub/2019.2.1/continuous/2019_12_05_2729669/src/products/hls/hls_lib/hlsmath/src/c/fmaxdouble.cpp:7:12) in function &apos;fmax&apos;... converting 4 basic blocks."/>
+	<Message severity="INFO" prefix="[XFORM 203-401]" key="XFORM_IFCONV_STATUS_239" tag="" content="Performing if-conversion on hyperblock to (monte-carlo.cpp:29:1) in function &apos;dut&apos;... converting 19 basic blocks."/>
+	<Message severity="INFO" prefix="[XFORM 203-602]" key="XFORM_AUTO_INLINE_STATUS_223" tag="" content="Inlining function &apos;fmax&apos; into &apos;monte_carlo_both_price&apos; (monte-carlo.cpp:139) automatically."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Pre-synthesis Time (s): cpu = 00:00:23 ; elapsed = 00:00:30 . Memory (MB): peak = 1176.535 ; gain = 534.043 ; free physical = 583 ; free virtual = 24741"/>
+	<Message severity="WARNING" prefix="[XFORM 203-542]" key="XFORM_LOOPFLAT_INVALID_219" tag="LOOP,SDX_LOOP" content="Cannot flatten a loop nest &apos;Loop-1&apos; (monte-carlo.cpp:130:17) in function &apos;monte_carlo_both_price&apos; : 
+
+more than one sub loop."/>
+	<Message severity="WARNING" prefix="[XFORM 203-631]" key="XFORM_FRN_STATUS_336" tag="" content="Renaming function &apos;monte_carlo_both_price&apos; to &apos;monte_carlo_both_pri&apos; (monte-carlo.cpp:18:32)"/>
+	<Message severity="INFO" prefix="[HLS 200-472]" key="HLS 200-472" tag="" content="Inferring partial write operation for &apos;gauss_bm&apos; (monte-carlo.cpp:133:21)"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Architecture Synthesis Time (s): cpu = 00:00:24 ; elapsed = 00:00:30 . Memory (MB): peak = 1176.535 ; gain = 534.043 ; free physical = 543 ; free virtual = 24701"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1317" tag="" content="Starting hardware synthesis ..."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1385" tag="" content="Synthesizing &apos;dut&apos; ..."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1477" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-42]" key="HLS_42_1438" tag="" content="-- Implementing module &apos;gaussian_box_muller&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1478" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_597" tag="" content="Starting scheduling ..."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_46" tag="" content="Pipelining function &apos;gaussian_box_muller&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;gaussian_box_muller&apos; (Function: gaussian_box_muller): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;seed_write_ln38&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109) of variable &apos;add_ln38_39&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109 on static variable &apos;seed&apos; and &apos;load&apos; operation (&apos;seed_load&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:108) on static variable &apos;seed&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;gaussian_box_muller&apos; (Function: gaussian_box_muller): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;seed_write_ln38&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109) of variable &apos;add_ln38_39&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109 on static variable &apos;seed&apos; and &apos;load&apos; operation (&apos;seed_load&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:108) on static variable &apos;seed&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;gaussian_box_muller&apos; (Function: gaussian_box_muller): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;seed_write_ln38&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109) of variable &apos;add_ln38_39&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109 on static variable &apos;seed&apos; and &apos;load&apos; operation (&apos;seed_load&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:108) on static variable &apos;seed&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;gaussian_box_muller&apos; (Function: gaussian_box_muller): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;seed_write_ln38&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109) of variable &apos;add_ln38_39&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109 on static variable &apos;seed&apos; and &apos;load&apos; operation (&apos;seed_load&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:108) on static variable &apos;seed&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;gaussian_box_muller&apos; (Function: gaussian_box_muller): Unable to enforce a carried dependence constraint (II = 67, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;seed_write_ln38&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109) of variable &apos;add_ln38_39&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109 on static variable &apos;seed&apos; and &apos;load&apos; operation (&apos;seed_load&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:108) on static variable &apos;seed&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;gaussian_box_muller&apos; (Function: gaussian_box_muller): Unable to enforce a carried dependence constraint (II = 74, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;seed_write_ln38&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109) of variable &apos;add_ln38_39&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109 on static variable &apos;seed&apos; and &apos;load&apos; operation (&apos;seed_load&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:108) on static variable &apos;seed&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;gaussian_box_muller&apos; (Function: gaussian_box_muller): Unable to enforce a carried dependence constraint (II = 78, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;seed_write_ln38&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109) of variable &apos;add_ln38_39&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:109 on static variable &apos;seed&apos; and &apos;load&apos; operation (&apos;seed_load&apos;, monte-carlo.cpp:38-&gt;monte-carlo.cpp:108) on static variable &apos;seed&apos;."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 79, Depth = 285."/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_596" tag="" content="Finished scheduling."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 35 seconds; current allocated memory: 199.396 MB."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_926" tag="" content="Starting micro-architecture generation ..."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_698" tag="" content="Performing variable lifetime analysis."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_697" tag="" content="Exploring resource sharing."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_693" tag="" content="Binding ..."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_705" tag="" content="After resource sharing, estimated clock period (10.049ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns)."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_707" tag="" content="The critical path consists of the following:
+	&apos;dmul&apos; operation (&apos;tmp_13&apos;, monte-carlo.cpp:41-&gt;monte-carlo.cpp:108) (10 ns)"/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_925" tag="" content="Finished micro-architecture generation."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 2.83 seconds; current allocated memory: 204.163 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1477" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-42]" key="HLS_42_1438" tag="" content="-- Implementing module &apos;monte_carlo_both_pri&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1478" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_597" tag="" content="Starting scheduling ..."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_41" tag="" content="Pipelining loop &apos;GAUSS_GEN_LABEL&apos;."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 79, Depth = 286."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_41" tag="" content="Pipelining loop &apos;SIMS_LABEL&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;monte_carlo_both_pri&apos; (Loop: SIMS_LABEL): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;put_payoff_sum_1_write_ln137&apos;, monte-carlo.cpp:137) of variable &apos;put_payoff_sum&apos;, monte-carlo.cpp:140 on local variable &apos;put_payoff_sum&apos; and &apos;load&apos; operation (&apos;put_payoff_sum_1_loa&apos;, monte-carlo.cpp:140) on local variable &apos;put_payoff_sum&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;monte_carlo_both_pri&apos; (Loop: SIMS_LABEL): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;put_payoff_sum_1_write_ln137&apos;, monte-carlo.cpp:137) of variable &apos;put_payoff_sum&apos;, monte-carlo.cpp:140 on local variable &apos;put_payoff_sum&apos; and &apos;load&apos; operation (&apos;put_payoff_sum_1_loa&apos;, monte-carlo.cpp:140) on local variable &apos;put_payoff_sum&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;monte_carlo_both_pri&apos; (Loop: SIMS_LABEL): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;put_payoff_sum_1_write_ln137&apos;, monte-carlo.cpp:137) of variable &apos;put_payoff_sum&apos;, monte-carlo.cpp:140 on local variable &apos;put_payoff_sum&apos; and &apos;load&apos; operation (&apos;put_payoff_sum_1_loa&apos;, monte-carlo.cpp:140) on local variable &apos;put_payoff_sum&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;monte_carlo_both_pri&apos; (Loop: SIMS_LABEL): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;put_payoff_sum_1_write_ln137&apos;, monte-carlo.cpp:137) of variable &apos;put_payoff_sum&apos;, monte-carlo.cpp:140 on local variable &apos;put_payoff_sum&apos; and &apos;load&apos; operation (&apos;put_payoff_sum_1_loa&apos;, monte-carlo.cpp:140) on local variable &apos;put_payoff_sum&apos;."/>
+	<Message severity="WARNING" prefix="[SCHED 204-68]" key="SCHED_CARRIED_CONSTRAINT_NOT_MET_32" tag="LOOP,SDX_LOOP,SCHEDULE" content="The II Violation in module &apos;monte_carlo_both_pri&apos; (Loop: SIMS_LABEL): Unable to enforce a carried dependence constraint (II = 5, distance = 1, offset = 0)
+   between &apos;store&apos; operation (&apos;put_payoff_sum_1_write_ln137&apos;, monte-carlo.cpp:137) of variable &apos;put_payoff_sum&apos;, monte-carlo.cpp:140 on local variable &apos;put_payoff_sum&apos; and &apos;load&apos; operation (&apos;put_payoff_sum_1_loa&apos;, monte-carlo.cpp:140) on local variable &apos;put_payoff_sum&apos;."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 6, Depth = 94."/>
+	<Message severity="WARNING" prefix="[SCHED 204-21]" key="SCHED_DELAY_EXCEEDED_76" tag="SDX_KERNEL,SCHEDULE" content="Estimated clock period (13.434ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns)."/>
+	<Message severity="WARNING" prefix="[SCHED 204-21]" key="SCHED_DELAY_EXCEEDED_74" tag="SDX_KERNEL,SCHEDULE" content="The critical path in module &apos;monte_carlo_both_pri&apos; consists of the following:
+	&apos;dadd&apos; operation (&apos;tmp_6&apos;, monte-carlo.cpp:139) [102]  (8.23 ns)
+	&apos;fptrunc&apos; operation (&apos;call_payoff_sum&apos;, monte-carlo.cpp:139) [103]  (5.2 ns)"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_596" tag="" content="Finished scheduling."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 3.55 seconds; current allocated memory: 206.387 MB."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_926" tag="" content="Starting micro-architecture generation ..."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_698" tag="" content="Performing variable lifetime analysis."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_697" tag="" content="Exploring resource sharing."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_693" tag="" content="Binding ..."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_925" tag="" content="Finished micro-architecture generation."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.83 seconds; current allocated memory: 208.907 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1477" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-42]" key="HLS_42_1438" tag="" content="-- Implementing module &apos;dut&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1478" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_597" tag="" content="Starting scheduling ..."/>
+	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_596" tag="" content="Finished scheduling."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 1.47 seconds; current allocated memory: 209.720 MB."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_926" tag="" content="Starting micro-architecture generation ..."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_698" tag="" content="Performing variable lifetime analysis."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_697" tag="" content="Exploring resource sharing."/>
+	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_693" tag="" content="Binding ..."/>
+	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_925" tag="" content="Finished micro-architecture generation."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 0.41 seconds; current allocated memory: 210.220 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1483" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1484" tag="" content="-- Generating RTL for module &apos;gaussian_box_muller&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1485" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="WARNING" prefix="[RTGEN 206-101]" key="RTGEN_101_861" tag="" content="Register &apos;seed&apos; is power-on initialization."/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_fadd_32ns_32ns_32_5_full_dsp_1&apos; to &apos;dut_fadd_32ns_32nbkb&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_fmul_32ns_32ns_32_4_max_dsp_1&apos; to &apos;dut_fmul_32ns_32ncud&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_fdiv_32ns_32ns_32_16_1&apos; to &apos;dut_fdiv_32ns_32ndEe&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_sitofp_32s_32_6_1&apos; to &apos;dut_sitofp_32s_32eOg&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_fptrunc_64ns_32_2_1&apos; to &apos;dut_fptrunc_64ns_fYi&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_fpext_32ns_64_2_1&apos; to &apos;dut_fpext_32ns_64g8j&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_fcmp_32ns_32ns_1_2_1&apos; to &apos;dut_fcmp_32ns_32nhbi&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_dadd_64ns_64ns_64_5_full_dsp_1&apos; to &apos;dut_dadd_64ns_64nibs&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_dmul_64ns_64ns_64_6_max_dsp_1&apos; to &apos;dut_dmul_64ns_64njbC&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_dsqrt_64ns_64ns_64_31_1&apos; to &apos;dut_dsqrt_64ns_64kbM&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_dadd_64ns_64nibs&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_dmul_64ns_64njbC&apos;: 2 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_dsqrt_64ns_64kbM&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fadd_32ns_32nbkb&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fcmp_32ns_32nhbi&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fdiv_32ns_32ndEe&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fmul_32ns_32ncud&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fpext_32ns_64g8j&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fptrunc_64ns_fYi&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_sitofp_32s_32eOg&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_856" tag="" content="Finished creating RTL model for &apos;gaussian_box_muller&apos;."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 1.31 seconds; current allocated memory: 216.700 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1483" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1484" tag="" content="-- Generating RTL for module &apos;monte_carlo_both_pri&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1485" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;monte_carlo_both_pri_gauss_bm&apos; to &apos;monte_carlo_both_lbW&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;dut_faddfsub_32ns_32ns_32_5_full_dsp_1&apos; to &apos;dut_faddfsub_32nsmb6&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_dadd_64ns_64nibs&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_dmul_64ns_64njbC&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fadd_32ns_32nbkb&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_faddfsub_32nsmb6&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fdiv_32ns_32ndEe&apos;: 2 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fmul_32ns_32ncud&apos;: 3 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fpext_32ns_64g8j&apos;: 1 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;dut_fptrunc_64ns_fYi&apos;: 2 instance(s)."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_856" tag="" content="Finished creating RTL model for &apos;monte_carlo_both_pri&apos;."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 4.72 seconds; current allocated memory: 231.358 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1483" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1484" tag="" content="-- Generating RTL for module &apos;dut&apos;"/>
+	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1485" tag="" content="----------------------------------------------------------------"/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on port &apos;dut/strm_out_V_V&apos; to &apos;ap_fifo&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-500]" key="PREPROC_IO_COMP_CONFLICT_1950" tag="" content="Setting interface mode on function &apos;dut&apos; to &apos;ap_ctrl_hs&apos;."/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_856" tag="" content="Finished creating RTL model for &apos;dut&apos;."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 2.02 seconds; current allocated memory: 235.936 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-790]" key="HLS 200-790" tag="LOOP,SDX_LOOP" content="**** Loop Constraint Status: All loop constraints were NOT satisfied."/>
+	<Message severity="INFO" prefix="[HLS 200-789]" key="HLS 200-789" tag="THROUGHPUT,SDX_KERNEL" content="**** Estimated Fmax: 74.44 MHz"/>
+	<Message severity="INFO" prefix="[RTMG 210-278]" key="RTMG_278_1790" tag="" content="Implementing memory &apos;monte_carlo_both_lbW_ram (RAM)&apos; using block RAMs."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished generating all RTL models Time (s): cpu = 00:00:40 ; elapsed = 00:00:59 . Memory (MB): peak = 1303.648 ; gain = 661.156 ; free physical = 459 ; free virtual = 24639"/>
+	<Message severity="INFO" prefix="[VHDL 208-304]" key="VHDL_304_1066" tag="" content="Generating VHDL RTL for dut."/>
+	<Message severity="INFO" prefix="[VLOG 209-307]" key="VLOG_307_1067" tag="" content="Generating Verilog RTL for dut."/>
+</Messages>

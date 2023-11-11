@@ -1,0 +1,8 @@
+# Ignore core files
+core.*
+
+# Ignore project folder
+monte-carlo.proj
+
+# Ignore all log files
+*.log
