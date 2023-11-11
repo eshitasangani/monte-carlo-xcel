@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cmath>
+#include "hls_math.h"
 #include "monte-carlo.h"
 
 void dut(hls::stream<bit32_t> &strm_out) {
@@ -28,27 +28,38 @@ void dut(hls::stream<bit32_t> &strm_out) {
   strm_out.write(put);
 }
 
-int seed = 1;  // Initial seed
-const int size = 6;  // LFSR size
-const unsigned int feedbackMask = 0b101011;  // Feedback mask (adjust for desired behavior)
+ap_uint<32> lfsr1 = 0xdcba;  // Initial seed
+ap_uint<32> lfsr2 = 1234;  // Initial seed
+
+unsigned int pseudo_random(ap_uint<32>& lfsr) {
+  bool b_32 = lfsr.get_bit(32-32);
+  bool b_22 = lfsr.get_bit(32-22);
+  bool b_2 = lfsr.get_bit(32-2);
+  bool b_1 = lfsr.get_bit(32-1);
+  bool new_bit = b_32 ^ b_22 ^ b_2 ^ b_1;
+  lfsr = lfsr >> 1;
+  lfsr.set_bit(31, new_bit);
+  return lfsr.to_uint();
+}
+
+constexpr theta_type rand_max_div_two = 2.0 / RAND_MAX;
 
 // Function to generate a random number in the range [0, 1)
-theta_type generate_rand() {
-    // Generate the next bit in the LFSR sequence
-    seed = 1103515245 * seed + 12345; // assume 2^32 wraparound
-    theta_type casted_seed = seed;
+theta_type generate_rand1() {
+    theta_type casted_seed = pseudo_random(lfsr1);
     theta_type rand_max = RAND_MAX;
-    return 2.0* casted_seed/rand_max - 1;
+    return rand_max_div_two * casted_seed - 1;
+}
+// Function to generate a random number in the range [0, 1)
+theta_type generate_rand2() {
+    theta_type casted_seed = pseudo_random(lfsr2);
+    theta_type rand_max = RAND_MAX;
+    return rand_max_div_two * casted_seed - 1;
 }
 
 template <typename T>
 T custom_log(T x)
 {
-  if (x <= 0)
-  {
-    std::cerr << "Error: Input must be greater than 0" << std::endl;
-    return -1.0; // Error value
-  }
   
   const int logTerms = 10;
 
@@ -105,8 +116,8 @@ theta_type gaussian_box_muller()
 
 GAUSS_LABEL:
   for (int i = 0; i < 20; i++) {
-    temp_x = generate_rand();
-    temp_y = generate_rand();
+    temp_x = generate_rand1();
+    temp_y = generate_rand2();
     euclid_sq_temp = temp_x * temp_x + temp_y * temp_y;
     if (euclid_sq_temp < 1.0) {
       euclid_sq = euclid_sq_temp;
@@ -115,7 +126,7 @@ GAUSS_LABEL:
     }
   }
   
-  return x * sqrt(-2 * custom_log<theta_type>(euclid_sq) / euclid_sq);
+  return x * hls::sqrt(-2 * custom_log<theta_type>(euclid_sq) / euclid_sq);
 }
 
 // Pricing a European vanilla option with a Monte Carlo method
@@ -125,22 +136,21 @@ void monte_carlo_both_price(result_type &result, const int &num_sims, const thet
   theta_type S_cur = 0.0;
   theta_type call_payoff_sum = 0.0;
   theta_type put_payoff_sum = 0.0;
-  theta_type gauss_bm[50000];
+  // theta_type gauss_bm[50000];
+  theta_type gauss_bm;
 
-  for (int j = 0; j < 20; j++) {
   GAUSS_GEN_LABEL:
-    for (int i = 0; i < 50000; i++) {
-      gauss_bm[i] = gaussian_box_muller();
-    }
-
-  SIMS_LABEL:
-    for (int i = 0; i < 50000; i++) {
-      S_cur = S_adjust * custom_exp<theta_type>(sqrt(v * v * T) * gauss_bm[i]);
-      call_payoff_sum += fmax(S_cur - K, 0.0);
-      put_payoff_sum += fmax(K - S_cur, 0.0);
-    }
-
+  for (int i = 0; i < 1000000; i++) {
+    gauss_bm = gaussian_box_muller();
+    S_cur = S_adjust * custom_exp<theta_type>(hls::sqrt(v * v * T) * gauss_bm);
+    theta_type zero1 = 0.0;
+    theta_type zero2 = 0.0;
+    theta_type call_val = S_cur - K;
+    theta_type put_val = K - S_cur;
+    call_payoff_sum += hls::fmax(call_val, zero1);
+    put_payoff_sum += hls::fmax(K - S_cur, zero2);
   }
+  
 
   theta_type cast_num_sims = num_sims;
   theta_type call = (call_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);

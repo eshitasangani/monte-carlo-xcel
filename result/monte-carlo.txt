@@ -1,0 +1,9 @@
+Testbench
+Number of Paths: 1000000
+Underlying:      100
+Strike:          100
+Risk-Free Rate:  0.05
+Volatility:      0.2
+Maturity:        1
+Call Price:      10.6047
+Put Price:       5.46641
