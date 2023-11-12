@@ -35,9 +35,8 @@ set_directive_inline gaussian_box_muller
 # set_directive_array_partition -type complete gaussian_box_muller euclid_sq_temp
 # set_directive_array_partition -type complete gaussian_box_muller temp_x
 # set_directive_array_partition -type complete gaussian_box_muller temp_y
-set_directive_pipeline gaussian_box_muller/GAUSS_LABEL
+# set_directive_pipeline gaussian_box_muller/GAUSS_LABEL
 set_directive_pipeline monte_carlo_both_price/GAUSS_GEN_LABEL
-set_directive_pipeline monte_carlo_both_price/OVERALL_LOOP
 # set_directive_unroll custom_exp/EXP_LABEL
 # set_directive_unroll custom_log/LOG_LABEL
 

@@ -12,12 +12,12 @@ void dut(hls::stream<bit32_t> &strm_out) {
   theta_type put = result.put;
 
   // Write the output to the stream
-  strm_out.write(num_sims);
-  strm_out.write(S);
-  strm_out.write(K);
-  strm_out.write(r);
-  strm_out.write(v);
-  strm_out.write(T);
+  // strm_out.write(num_sims);
+  // strm_out.write(S);
+  // strm_out.write(K);
+  // strm_out.write(r);
+  // strm_out.write(v);
+  // strm_out.write(T);
   strm_out.write(call);
   strm_out.write(put);
 }
@@ -40,67 +40,25 @@ const theta_type rand_max_div_two = 0.000000000931322575049159384821150165433599
 // Function to generate a random number in the range [0, 1)
 theta_type generate_rand1() {
     theta_type casted_seed = pseudo_random(lfsr1);
-    // theta_type casted_seed = gcc_rand(seed1);
-    return rand_max_div_two * casted_seed - 1;
+    return rand_max_div_two * casted_seed - 1.0f;
 }
 // Function to generate a random number in the range [0, 1)
 theta_type generate_rand2() {
     theta_type casted_seed = pseudo_random(lfsr2);
-    // theta_type casted_seed = gcc_rand(seed2);
-    return rand_max_div_two * casted_seed - 1;
-}
-
-template <typename T>
-T custom_log(const T& x)
-{
-  const int logTerms = 10;
-
-  T result = 0.0;
-  T term = (x - 1) / (x + 1);
-  T term_squared = term * term;
-  T numerator = term;
-  T denominator = 1;
-
-  LOG_LABEL:
-  for (int i = 1; i <= logTerms; i++)
-  {
-    result += numerator / denominator;
-    numerator *= term_squared;
-    denominator += 2;
-  }
-
-  return 2 * result;
-}
-
-template <typename T>
-T custom_exp(const T& x)
-{
-  T result = 1.0;
-  T term = 1.0;
-  T factorial = 1.0;
-  const int expTerms = 10;
-
-  EXP_LABEL:
-  for (int i = 1; i <= expTerms; i++)
-  {
-    term *= x / i;
-    result += term;
-  }
-
-  return result;
+    return rand_max_div_two * casted_seed - 1.0f;
 }
 
 // box muller algorithm
 theta_type gaussian_box_muller()
 {
-  theta_type x = 0.45543;
-  theta_type y = -0.337388;
-  theta_type euclid_sq = 0.353308;
+  theta_type x = 0.45543f;
+  theta_type y = -0.337388f;
+  theta_type euclid_sq = 0.353308f;
   
-  theta_type euclid_sq_temp = 0.0;
-  theta_type epsilon = 0.00001;
-  theta_type temp_x = 0;
-  theta_type temp_y = 0;
+  theta_type euclid_sq_temp = 0.0f;
+  theta_type epsilon = 0.00001f;
+  theta_type temp_x = 0.0f;
+  theta_type temp_y = 0.0f;
 
   // Continue generating two uniform random variables
   // until the square of their "euclidean distance"
@@ -111,21 +69,20 @@ theta_type gaussian_box_muller()
     temp_x = generate_rand1();
     temp_y = generate_rand2();
     euclid_sq_temp = temp_x * temp_x + temp_y * temp_y;
-    if (euclid_sq_temp < 1.0) {
+    if (euclid_sq_temp < 1.0f) {
       euclid_sq = euclid_sq_temp;
       x = temp_x;
       y = temp_y;
     }
   }
   
-  return x * hls::sqrt(-2 * hls::log(euclid_sq) / euclid_sq);
+  return x * hls::sqrt(-2.0f * hls::log(euclid_sq) / euclid_sq);
 }
 
 // Pricing a European vanilla option with a Monte Carlo method
 void monte_carlo_both_price(result_type &result)
 {
-  const theta_type half = 0.5;
-  const theta_type S_adjust = S * hls::exp(T * (r - half * v * v));
+  const theta_type S_adjust = S * hls::exp(T * (r - 0.5f * v * v));
   const theta_type K_adjust = K/S_adjust;
   const theta_type sqrt_const = hls::sqrt(v * v * T);
   theta_type S_cur = 0.0;
@@ -134,26 +91,22 @@ void monte_carlo_both_price(result_type &result)
   constexpr int MOD = FADD_LAT - 1;
   theta_type call_payoff_sum_arr[FADD_LAT];
   theta_type put_payoff_sum_arr[FADD_LAT];
-  theta_type call_payoff_sum = 0.0;
-  theta_type put_payoff_sum = 0.0;
+  theta_type call_payoff_sum = 0.0f;
+  theta_type put_payoff_sum = 0.0f;
 
   LOOP_INIT:
   for (int i =0 ; i< FADD_LAT; i++){
-    call_payoff_sum_arr[i] = 0;
-    put_payoff_sum_arr[i] = 0;
+    call_payoff_sum_arr[i] = 0.0f;
+    put_payoff_sum_arr[i] = 0.0f;
   }
 
 
   GAUSS_GEN_LABEL:
   for (int i = 0; i < num_sims; i++) {
     theta_type gauss_bm = gaussian_box_muller();
-    S_cur = hls::exp(sqrt_const * gauss_bm);
-    theta_type zero1 = 0.0;
-    theta_type zero2 = 0.0;
-    theta_type call_val = S_cur - K_adjust;
-    theta_type put_val = K_adjust - S_cur;
-    call_payoff_sum_arr[i & MOD] += hls::fmax(call_val, zero1);
-    put_payoff_sum_arr[i & MOD] += hls::fmax(put_val, zero2);
+    theta_type S_cur = hls::exp(sqrt_const * gauss_bm);
+    call_payoff_sum_arr[i & MOD] += hls::fmax(S_cur - K_adjust, 0.0f);
+    put_payoff_sum_arr[i & MOD] += hls::fmax(K_adjust - S_cur, 0.0f);
   }
 
   FINAL:
