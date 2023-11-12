@@ -118,14 +118,14 @@ theta_type gaussian_box_muller()
     }
   }
   
-  return x * hls::sqrt(-2 * custom_log<theta_type>(euclid_sq) / euclid_sq);
+  return x * hls::sqrt(-2 * hls::log(euclid_sq) / euclid_sq);
 }
 
 // Pricing a European vanilla option with a Monte Carlo method
 void monte_carlo_both_price(result_type &result)
 {
   const theta_type half = 0.5;
-  const theta_type S_adjust = S * custom_exp<theta_type>(T * (r - half * v * v));
+  const theta_type S_adjust = S * hls::exp(T * (r - half * v * v));
   const theta_type K_adjust = K/S_adjust;
   const theta_type sqrt_const = hls::sqrt(v * v * T);
   theta_type S_cur = 0.0;
@@ -147,7 +147,7 @@ void monte_carlo_both_price(result_type &result)
   GAUSS_GEN_LABEL:
   for (int i = 0; i < num_sims; i++) {
     theta_type gauss_bm = gaussian_box_muller();
-    S_cur = custom_exp<theta_type>(sqrt_const * gauss_bm);
+    S_cur = hls::exp(sqrt_const * gauss_bm);
     theta_type zero1 = 0.0;
     theta_type zero2 = 0.0;
     theta_type call_val = S_cur - K_adjust;
@@ -163,8 +163,8 @@ void monte_carlo_both_price(result_type &result)
   }
 
   theta_type cast_num_sims = num_sims;
-  theta_type call = S_adjust * (call_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
-  theta_type put = S_adjust * (put_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
+  theta_type call = S_adjust * (call_payoff_sum / cast_num_sims) * hls::exp(-r * T);
+  theta_type put = S_adjust * (put_payoff_sum / cast_num_sims) * hls::exp(-r * T);
 
   result.call = call;
   result.put = put;

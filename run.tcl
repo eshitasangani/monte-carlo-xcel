@@ -25,6 +25,8 @@ set_part {xc7z020clg484-1}
 create_clock -period 10
 
 ### You can insert your own directives here ###
+set_directive_inline custom_log
+set_directive_inline custom_exp
 set_directive_inline generate_rand1
 set_directive_inline generate_rand2
 set_directive_inline pseudo_random
