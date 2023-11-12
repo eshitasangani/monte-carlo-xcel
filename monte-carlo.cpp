@@ -36,29 +36,23 @@ unsigned int pseudo_random(ap_uint<32>& lfsr) {
   return lfsr.to_uint();
 }
 
-constexpr theta_type rand_two_div_max = 2.0 / RAND_MAX;
+const theta_type rand_max_div_two = 0.000000000931322575049159384821150165433599690642952774950746807712478007;
 // Function to generate a random number in the range [0, 1)
 theta_type generate_rand1() {
     theta_type casted_seed = pseudo_random(lfsr1);
     // theta_type casted_seed = gcc_rand(seed1);
-    return rand_two_div_max * casted_seed - 1;
+    return rand_max_div_two * casted_seed - 1;
 }
 // Function to generate a random number in the range [0, 1)
 theta_type generate_rand2() {
     theta_type casted_seed = pseudo_random(lfsr2);
     // theta_type casted_seed = gcc_rand(seed2);
-    return rand_two_div_max * casted_seed - 1;
+    return rand_max_div_two * casted_seed - 1;
 }
 
 template <typename T>
 T custom_log(const T& x)
 {
-  if (x <= 0)
-  {
-    std::cerr << "Error: Input must be greater than 0" << std::endl;
-    return -1.0; // Error value
-  }
-  
   const int logTerms = 10;
 
   T result = 0.0;
@@ -130,29 +124,47 @@ theta_type gaussian_box_muller()
 // Pricing a European vanilla option with a Monte Carlo method
 void monte_carlo_both_price(result_type &result)
 {
-
-  const theta_type S_adjust = S * custom_exp<theta_type>(T * (r - 0.5 * v * v));
+  const theta_type half = 0.5;
+  const theta_type S_adjust = S * custom_exp<theta_type>(T * (r - half * v * v));
+  const theta_type K_adjust = K/S_adjust;
   const theta_type sqrt_const = hls::sqrt(v * v * T);
   theta_type S_cur = 0.0;
+  
+  constexpr int FADD_LAT = 8;
+  constexpr int MOD = FADD_LAT - 1;
+  theta_type call_payoff_sum_arr[FADD_LAT];
+  theta_type put_payoff_sum_arr[FADD_LAT];
   theta_type call_payoff_sum = 0.0;
   theta_type put_payoff_sum = 0.0;
-  
+
+  LOOP_INIT:
+  for (int i =0 ; i< FADD_LAT; i++){
+    call_payoff_sum_arr[i] = 0;
+    put_payoff_sum_arr[i] = 0;
+  }
+
+
   GAUSS_GEN_LABEL:
-  for (int i = 0; i < 1000000; i++) {
+  for (int i = 0; i < num_sims; i++) {
     theta_type gauss_bm = gaussian_box_muller();
-    S_cur = S_adjust * custom_exp<theta_type>(sqrt_const * gauss_bm);
+    S_cur = custom_exp<theta_type>(sqrt_const * gauss_bm);
     theta_type zero1 = 0.0;
     theta_type zero2 = 0.0;
-    theta_type call_val = S_cur - K;
-    theta_type put_val = K - S_cur;
-    call_payoff_sum += hls::fmax(call_val, zero1);
-    put_payoff_sum += hls::fmax(put_val, zero2);
+    theta_type call_val = S_cur - K_adjust;
+    theta_type put_val = K_adjust - S_cur;
+    call_payoff_sum_arr[i & MOD] += hls::fmax(call_val, zero1);
+    put_payoff_sum_arr[i & MOD] += hls::fmax(put_val, zero2);
   }
-  
+
+  FINAL:
+  for (int k = 0; k < FADD_LAT;k++){
+    call_payoff_sum +=  call_payoff_sum_arr[k];
+    put_payoff_sum += put_payoff_sum_arr[k];
+  }
 
   theta_type cast_num_sims = num_sims;
-  theta_type call = (call_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
-  theta_type put = (put_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
+  theta_type call = S_adjust * (call_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
+  theta_type put = S_adjust * (put_payoff_sum / cast_num_sims) * custom_exp<theta_type>(-r * T);
 
   result.call = call;
   result.put = put;
