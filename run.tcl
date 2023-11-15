@@ -44,8 +44,8 @@ set_directive_pipeline monte_carlo_both_price/GAUSS_GEN_LABEL
 # set_directive_unroll monte_carlo_both_price/LOOP_INIT
 # set_directive_unroll monte_carlo_both_price/FINAL
 
-set_directive_array_partition -type complete gaussian_box_muller call_payoff_sum_arr
-set_directive_array_partition -type complete gaussian_box_muller put_payoff_sum_arr
+set_directive_array_partition -type complete monte_carlo_both_price call_payoff_sum_arr
+set_directive_array_partition -type complete monte_carlo_both_price put_payoff_sum_arr
 ############################################
 
 # Simulate the C++ design

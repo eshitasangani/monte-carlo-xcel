@@ -87,33 +87,35 @@ void monte_carlo_both_price(result_type &result)
   const theta_type sqrt_const = hls::sqrt(v * v * T);
   theta_type S_cur = 0.0;
   
-  constexpr int FADD_LAT = 4;
-  constexpr int MOD = FADD_LAT - 1;
-  theta_type call_payoff_sum_arr[FADD_LAT];
-  theta_type put_payoff_sum_arr[FADD_LAT];
+  // constexpr int FADD_LAT = 8;
+  // constexpr int MOD = FADD_LAT - 1;
+  // theta_type call_payoff_sum_arr[FADD_LAT];
+  // theta_type put_payoff_sum_arr[FADD_LAT];
   theta_type call_payoff_sum = 0.0f;
   theta_type put_payoff_sum = 0.0f;
 
-  LOOP_INIT:
-  for (int i =0 ; i< FADD_LAT; i++){
-    call_payoff_sum_arr[i] = 0.0f;
-    put_payoff_sum_arr[i] = 0.0f;
-  }
+  // LOOP_INIT:
+  // for (int i =0 ; i< FADD_LAT; i++){
+  //   call_payoff_sum_arr[i] = 0.0f;
+  //   put_payoff_sum_arr[i] = 0.0f;
+  // }
 
 
   GAUSS_GEN_LABEL:
   for (int i = 0; i < num_sims; i++) {
     theta_type gauss_bm = gaussian_box_muller();
     theta_type S_cur = hls::exp(sqrt_const * gauss_bm);
-    call_payoff_sum_arr[i & MOD] += hls::fmax(S_cur - K_adjust, 0.0f);
-    put_payoff_sum_arr[i & MOD] += hls::fmax(K_adjust - S_cur, 0.0f);
+    // call_payoff_sum_arr[0] += hls::fmax(S_cur - K_adjust, 0.0f); // change to i & MOD for faster but more resources
+    call_payoff_sum += hls::fmax(S_cur - K_adjust, 0.0f);
+    put_payoff_sum += hls::fmax(K_adjust - S_cur, 0.0f);
+    // put_payoff_sum_arr[0] += hls::fmax(K_adjust - S_cur, 0.0f);
   }
 
-  FINAL:
-  for (int k = 0; k < FADD_LAT;k++){
-    call_payoff_sum +=  call_payoff_sum_arr[k];
-    put_payoff_sum += put_payoff_sum_arr[k];
-  }
+  // FINAL:
+  // for (int k = 0; k < FADD_LAT;k++){
+  //   call_payoff_sum +=  call_payoff_sum_arr[k];
+  //   put_payoff_sum += put_payoff_sum_arr[k];
+  // }
 
   theta_type cast_num_sims = num_sims;
   theta_type call = S_adjust * (call_payoff_sum / cast_num_sims) * hls::exp(-r * T);
