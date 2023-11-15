@@ -4,5 +4,8 @@ core.*
 # Ignore project folder
 monte-carlo.prj
 
+# Ignore result folder
+result
+
 # Ignore all log files
 *.log
