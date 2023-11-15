@@ -87,7 +87,7 @@ void monte_carlo_both_price(result_type &result)
   const theta_type sqrt_const = hls::sqrt(v * v * T);
   theta_type S_cur = 0.0;
   
-  constexpr int FADD_LAT = 8;
+  constexpr int FADD_LAT = 4;
   constexpr int MOD = FADD_LAT - 1;
   theta_type call_payoff_sum_arr[FADD_LAT];
   theta_type put_payoff_sum_arr[FADD_LAT];
