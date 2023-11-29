@@ -17,6 +17,7 @@ constexpr theta_type r = 0.05;         // Risk-free rate (5%)
 constexpr theta_type v = 0.2;          // Volatility of the underlying (20%)
 constexpr theta_type T = 1.0;          // One year until expiry
 
+
 void dut(hls::stream<bit32_t> &strm_out);
 
 theta_type generate_rand();

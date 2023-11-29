@@ -56,12 +56,21 @@ theta_type generate_rand2() {
 //------------------------------------------------------------------------
 // VARIABLES USED 
 //------------------------------------------------------------------------
-const theta_type expected_call_value = 10.1341/* your expected call value */;
-const theta_type expected_put_value = 5.43944/* your expected put value */;
+constexpr int num_sims = 1000000;      // Number of simulated asset paths
+constexpr theta_type S = 100.0;        // Option price
+constexpr theta_type K = 100.0;        // Strike price
+constexpr theta_type r = 0.05;         // Risk-free rate (5%)
+constexpr theta_type v = 0.2;          // Volatility of the underlying (20%)
+constexpr theta_type T = 1.0;          // One year until expiry
+
+constexpr theta_type expected_call_value = 10.1341/* your expected call value */;
+constexpr theta_type expected_put_value = 5.43944/* your expected put value */;
 int num_test_insts = 0;
 const int num_simulations = 1000000;
 int nbytes;
 int error = 0;
+
+theta_type params[5] = {1000000, 100.0, 100.0, 0.05, 0.2, 1.0}
 
 //--------------------------------------
 // main function
@@ -82,41 +91,32 @@ int main(int argc, char **argv) {
   Timer timer("monte-carlo FPGA");
  
   // Arrays to store test data and expected results
-  result_type results[num_simulations];
+  result_type results;
 
-  //--------------------------------------------------------------------
-  // Generate input data using Monte Carlo
-  //--------------------------------------------------------------------
-  for (int i = 0; i < num_simulations; ++i) {
-    results[i] = {}; // Initialize to zero, or use appropriate initialization
-  }
   timer.start();
 
   //--------------------------------------------------------------------
   // send all values to the module
   //--------------------------------------------------------------------
-  for (int i = 0; i < num_simulations; ++i) {
+  for (int i = 0; i < params; ++i) {
     bit64_t input_in;
-    input_in(63, 0) = static_cast<bit64_t>(generate_rand(lfsr1) * 1000); 
+    input_in(63, 0) = static_cast<bit64_t>(5); 
     nbytes = write(fdw, (void *)&input_in, sizeof(input_in));
   }
   
   //--------------------------------------------------------------------
   // read all results
   //--------------------------------------------------------------------
-  for (int i = 0; i < num_simulations; ++i) {
-    nbytes = read(fdr, (void *)&results[i], sizeof(result_type));
-    num_test_insts++;
-    if (results[i].call != expected_call_value || results[i].put != expected_put_value) {
-      error++;
-    }
+  nbytes = read(fdr, (void *)&results, sizeof(result_type));
+  if (results.call != expected_call_value || results.put != expected_put_value) {
+    error++;
   }
 
   timer.stop();
 
   // Report overall error out of all testing instances
-  // std::cout << "Expected Call Calue = " << num_test_insts << std::endl;
-  // std::cout << "Overall Error Rate = " << std::setprecision(3)
-  //           << ((double)error / num_test_insts) * 100 << "%" << std::endl;
+  std::cout << "Expected Call Value = " << results.call << std::endl;
+  std::cout << "Expected Put Value = " << results.put << std::endl;
+
   return 0;
 }
