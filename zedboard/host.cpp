@@ -23,37 +23,6 @@ int64_t hexstring_to_int64(std::string h) {
 }
 
 //------------------------------------------------------------------------
-// RAND FUNCTIONS 
-//------------------------------------------------------------------------
-ap_uint<32> lfsr1 = 0xdcba;  // Initial seed
-ap_uint<32> lfsr2 = 1234;  // Initial seed
-
-unsigned int pseudo_random(ap_uint<32>& lfsr) {
-bool b_32 = lfsr.get_bit(32-32);
-bool b_22 = lfsr.get_bit(32-22);
-bool b_2 = lfsr.get_bit(32-2);
-bool b_1 = lfsr.get_bit(32-1);
-bool new_bit = b_32 ^ b_22 ^ b_2 ^ b_1;
-lfsr = lfsr >> 1;
-lfsr.set_bit(31, new_bit);
-return lfsr.to_uint();
-}
-
-constexpr theta_type rand_two_div_max = 2.0 / RAND_MAX;
-// Function to generate a random number in the range [0, 1)
-theta_type generate_rand1() {
-    theta_type casted_seed = pseudo_random(lfsr1);
-    // theta_type casted_seed = gcc_rand(seed1);
-    return rand_two_div_max * casted_seed - 1;
-}
-// Function to generate a random number in the range [0, 1)
-theta_type generate_rand2() {
-    theta_type casted_seed = pseudo_random(lfsr2);
-    // theta_type casted_seed = gcc_rand(seed2);
-    return rand_two_div_max * casted_seed - 1;
-}
-
-//------------------------------------------------------------------------
 // VARIABLES USED 
 //------------------------------------------------------------------------
 constexpr int num_sims = 1000000;      // Number of simulated asset paths
@@ -65,12 +34,11 @@ constexpr theta_type T = 1.0;          // One year until expiry
 
 constexpr theta_type expected_call_value = 10.1341/* your expected call value */;
 constexpr theta_type expected_put_value = 5.43944/* your expected put value */;
-int num_test_insts = 0;
-const int num_simulations = 1000000;
+
 int nbytes;
 int error = 0;
 
-theta_type params[5] = {1000000, 100.0, 100.0, 0.05, 0.2, 1.0}
+theta_type params[5] = {num_sims, S, K, r, v, T}
 
 //--------------------------------------
 // main function
@@ -91,32 +59,37 @@ int main(int argc, char **argv) {
   Timer timer("monte-carlo FPGA");
  
   // Arrays to store test data and expected results
-  result_type results;
+  result_type result;
 
   timer.start();
 
   //--------------------------------------------------------------------
   // send all values to the module
   //--------------------------------------------------------------------
-  for (int i = 0; i < params; ++i) {
+
+  for (int i = 0; i < PARAM_SIZE; ++i) {
     bit64_t input_in;
-    input_in(63, 0) = static_cast<bit64_t>(5); 
+    input_in = params[i]
     nbytes = write(fdw, (void *)&input_in, sizeof(input_in));
+    assert(nbytes == sizeof(input_in));
+
   }
+  
   
   //--------------------------------------------------------------------
   // read all results
   //--------------------------------------------------------------------
-  nbytes = read(fdr, (void *)&results, sizeof(result_type));
-  if (results.call != expected_call_value || results.put != expected_put_value) {
+
+  nbytes = read(fdr, (void *)&result.call, sizeof(result.call));
+  if (result.call != expected_call_value ) {
     error++;
   }
 
   timer.stop();
 
   // Report overall error out of all testing instances
-  std::cout << "Expected Call Value = " << results.call << std::endl;
-  std::cout << "Expected Put Value = " << results.put << std::endl;
+  std::cout << "Expected Call Value = " << result.call << std::endl;
+  std::cout << "Expected Put Value = " << result.put << std::endl;
 
   return 0;
 }

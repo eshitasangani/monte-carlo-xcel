@@ -15,7 +15,7 @@ CFLAGS = -I${INC_PATH}
 
 all: sw
 
-digitrec-arm: monte-carlo.cpp monte-carlo_test.cpp
+monte-carlo-arm: monte-carlo.cpp monte-carlo_test.cpp
 	@echo "Compiling & executing monte-carlo software program on ARM ..."
 	g++ ${CFLAGS} $^ -o $@
 
@@ -32,7 +32,7 @@ monte-carlo-fpga: host.cpp
 	@echo "Make sure bitstream is loaded!"
 
 fpga: monte-carlo-fpga
-	@echo "Running digitrec accelerator ..."
+	@echo "Running monte carlo accelerator ..."
 	./$<
 
 # Clean up the directory before submission
