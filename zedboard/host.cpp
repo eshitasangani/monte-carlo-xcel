@@ -8,39 +8,11 @@
 #include <iostream>
 #include <fstream>
 #include "typedefs.h"
+#include "timer.h"
+#include "monte-carlo.h"
 
-//------------------------------------------------------------------------
-// Helper function for hex to int conversion
-//------------------------------------------------------------------------
-int64_t hexstring_to_int64(std::string h) {
-  int64_t x = 0;
-  for (int i = 0; i < h.length(); ++i) {
-    char c = h[i];
-    int k = (c > '9') ? toupper(c) - 'A' + 10 : c - '0';
-    x = x * 16 + k;
-  }
-  return x;
-}
+theta_type params[6] = {num_sims, S, K, r, v, T};
 
-//------------------------------------------------------------------------
-// VARIABLES USED 
-//------------------------------------------------------------------------
-constexpr int num_sims = 1000000;      // Number of simulated asset paths
-constexpr theta_type S = 100.0;        // Option price
-constexpr theta_type K = 100.0;        // Strike price
-constexpr theta_type r = 0.05;         // Risk-free rate (5%)
-constexpr theta_type v = 0.2;          // Volatility of the underlying (20%)
-constexpr theta_type T = 1.0;          // One year until expiry
-
-constexpr theta_type expected_call_value = 10.1341/* your expected call value */;
-constexpr theta_type expected_put_value = 5.43944/* your expected put value */;
-
-int nbytes;
-int error = 0;
-
-theta_type params[5] = {num_sims, S, K, r, v, T}
-
-//--------------------------------------
 // main function
 //--------------------------------------
 int main(int argc, char **argv) {
@@ -55,11 +27,11 @@ int main(int argc, char **argv) {
     return -1;
   }
 
+  int nbytes;
+  int error = 0;
+
   // Timer
   Timer timer("monte-carlo FPGA");
- 
-  // Arrays to store test data and expected results
-  result_type result;
 
   timer.start();
 
@@ -67,29 +39,46 @@ int main(int argc, char **argv) {
   // send all values to the module
   //--------------------------------------------------------------------
 
-  for (int i = 0; i < PARAM_SIZE; ++i) {
-    bit64_t input_in;
-    input_in = params[i]
-    nbytes = write(fdw, (void *)&input_in, sizeof(input_in));
-    assert(nbytes == sizeof(input_in));
-
+  for (int i = 0; i < 6; ++i) {
+    theta_type input_in;
+    input_in = params[i];
+// try converting the float to uint32
+    streamVal convert;
+    convert.fl = input_in;
+    nbytes = write(fdw, (void *)&convert.u32, sizeof(convert.u32));
+    assert(nbytes == sizeof(convert.u32));
   }
-  
-  
+
   //--------------------------------------------------------------------
   // read all results
   //--------------------------------------------------------------------
 
-  nbytes = read(fdr, (void *)&result.call, sizeof(result.call));
-  if (result.call != expected_call_value ) {
-    error++;
-  }
+    int icall, iput;
+
+    // read call price 
+    nbytes = read (fdr, (void*)&icall, sizeof(int));
+    assert (nbytes == sizeof(icall));
+
+    // read put price
+    nbytes = read (fdr, (void*)&iput, sizeof(int));
+    assert (nbytes == sizeof(iput));
+    streamVal callConvert, putConvert;
+    callConvert.u32 = icall;
+    putConvert.u32 = iput;
+    float fcall = callConvert.fl;
+    float fput = putConvert.fl;
+    //float fcall = icall;
+    //float fput = iput;
 
   timer.stop();
 
-  // Report overall error out of all testing instances
-  std::cout << "Expected Call Value = " << result.call << std::endl;
-  std::cout << "Expected Put Value = " << result.put << std::endl;
+
+  // Print out price
+  std::cout << "Expected Call Value = " << fcall << std::endl;
+  std::cout << "Expected Put Value = " << fput << std::endl;
+
+  close(fdr);
+  close(fdw);
 
   return 0;
-}
+} 

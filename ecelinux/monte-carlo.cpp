@@ -2,27 +2,28 @@
 #include "hls_math.h"
 #include "monte-carlo.h"
 
-void dut(hls::stream<bit32_t> &strm_out) {
-  // const int PARAM_SIZE = 6; 
 
-  // // params sent to FPGA
-  // theta_type params[PARAM_SIZE] = {num_sims, S, K, r, v, T};
-
-  // // send values to the module
-  // for (int i = 0; i < PARAM_SIZE; ++i) {
-  //   bit32_t input_in;
-  //   input_in = params[i];
-  //   strm_in.write(input_in);
-  // }
-
+void dut(hls::stream<bit32_t> &strm_in, hls::stream<bit32_t> &strm_out) {
   // Read the results from the module
+  int dummy = strm_in.read();
+
   result_type result;
   monte_carlo_both_price(result);
   theta_type call = result.call;
   theta_type put = result.put;
 
+  union { float fval; int ival; } ucall;
+  union { float fval; int ival; } uput;
+
+  ucall.fval = call;
+  uput.fval = put;
+
+  int icall = ucall.ival;
+  int iput = uput.ival;
+
   // write output to stream
-  strm_out.write(call);
+  strm_out.write(icall);
+  strm_out.write(iput);
 }
 
 ap_uint<32> lfsr1 = 0xdcba;  // Initial seed
