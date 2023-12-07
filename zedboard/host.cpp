@@ -11,6 +11,18 @@
 #include "timer.h"
 #include "monte-carlo.h"
 
+union streamVal{
+float fl;
+uint32_t u32;
+};
+
+int num_sims = 1000000;      // Number of simulated asset paths
+theta_type S = 100.0;        // Option price
+theta_type K = 100.0;        // Strike price
+theta_type r = 0.05;         // Risk-free rate (5%)
+theta_type v = 0.2;          // Volatility of the underlying (20%)
+theta_type T = 1.0;          // One year until expiry
+
 theta_type params[6] = {num_sims, S, K, r, v, T};
 
 // main function
