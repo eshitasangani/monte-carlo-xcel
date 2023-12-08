@@ -41,8 +41,8 @@ set_directive_pipeline -II 1 monte_carlo_both_price/GAUSS_GEN_LABEL
 # set_directive_unroll custom_exp/EXP_LABEL
 # set_directive_unroll custom_log/LOG_LABEL
 
-set_directive_dependence monte_carlo_both_price/GAUSS_GEN_LABEL -type inter -dependent false -variable call_payoff_sum_arr
-set_directive_dependence monte_carlo_both_price/GAUSS_GEN_LABEL -type inter -dependent false -variable put_payoff_sum_arr
+set_directive_dependence monte_carlo_both_price/GAUSS_GEN_LABEL -type inter -dependent false -distance 8 -variable call_payoff_sum_arr
+set_directive_dependence monte_carlo_both_price/GAUSS_GEN_LABEL -type inter -dependent false -distance 8 -variable put_payoff_sum_arr
 
 
 # set_directive_unroll monte_carlo_both_price/LOOP_INIT
