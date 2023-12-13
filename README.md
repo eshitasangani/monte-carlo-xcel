@@ -2,4 +2,4 @@
 
  Use HLS to accelerate a Monte Carlo algorithm for an options pricing model. 
 
- Collaborators - Angela, Andrew, Eshita, Evan
+ Collaborators - Angela Cui, Andrew Cheng, Eshita Sangani, Evan Williams
