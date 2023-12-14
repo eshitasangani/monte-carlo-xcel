@@ -35,6 +35,7 @@ void dut(hls::stream<bit32_t> &strm_in, hls::stream<bit32_t> &strm_out) {
 ap_uint<32> lfsr1 = 0xdcba;  // Initial seed
 ap_uint<32> lfsr2 = 1234;  // Initial seed
 
+// PRNG - pseduo random number generator using linear feedback shift registers
 unsigned int pseudo_random(ap_uint<32>& lfsr) {
   bool b_32 = lfsr.get_bit(32-32);
   bool b_22 = lfsr.get_bit(32-22);
@@ -50,16 +51,16 @@ constexpr theta_type rand_two_div_max = 2.0 / RAND_MAX;
 // Function to generate a random number in the range [0, 1)
 theta_type generate_rand1() {
     theta_type casted_seed = pseudo_random(lfsr1);
-    // theta_type casted_seed = gcc_rand(seed1);
-    return rand_two_div_max * casted_seed - 1;
-}
-// Function to generate a random number in the range [0, 1)
-theta_type generate_rand2() {
-    theta_type casted_seed = pseudo_random(lfsr2);
-    // theta_type casted_seed = gcc_rand(seed2);
     return rand_two_div_max * casted_seed - 1;
 }
 
+// Function to generate a random number in the range [0, 1)
+theta_type generate_rand2() {
+    theta_type casted_seed = pseudo_random(lfsr2);
+    return rand_two_div_max * casted_seed - 1;
+}
+
+// custom log function 
 template <typename T>
 T custom_log(const T& x)
 {
@@ -88,6 +89,7 @@ T custom_log(const T& x)
   return 2 * result;
 }
 
+// custom exp function
 template <typename T>
 T custom_exp(const T& x)
 {
@@ -106,7 +108,7 @@ T custom_exp(const T& x)
   return result;
 }
 
-// box muller algorithm
+// Box muller algorithm
 theta_type gaussian_box_muller()
 {
   theta_type x = 0.45543;
