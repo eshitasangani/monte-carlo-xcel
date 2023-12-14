@@ -7,7 +7,7 @@ This is a project for ECE 6775 - High-Level Digital Design Automation - at Corne
 2. Run `vivado_hls -f run.tcl`
 
 ## To run this design on the zedboard
-1. Run `vivado_hls -f run.tcl` to generate Verilog for this moduel 
+1. Run `vivado_hls -f run.tcl` to generate Verilog for this module 
 2. Run `source run_bitstream.sh` to generate the bitstream that will be used to reconfigure the FPGA 
 3. Scp the generated `xillydemo.bit` to the zedboard using `scp xillydemo.bit <user>@zhang-zedboard-xx.ece.cornell.edu:~`
 4. Login to the zedboard - `ssh <user>@zhang-zedboard-xx.ece.cornell.edu`
