@@ -10,10 +10,7 @@
 
 int main(int argc, char **argv)
 {
-
-  // First we create the parameter list hard coded in h file
-
-  // Then we calculate the call/put values via Monte Carlo
+  // Calculate the call/put values via Monte Carlo
   result_type result;
   monte_carlo_both_price(result);
   theta_type call = result.call;
