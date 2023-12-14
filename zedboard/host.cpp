@@ -79,8 +79,7 @@ int main(int argc, char **argv) {
     putConvert.u32 = iput;
     float fcall = callConvert.fl;
     float fput = putConvert.fl;
-    //float fcall = icall;
-    //float fput = iput;
+
 
   timer.stop();
 
