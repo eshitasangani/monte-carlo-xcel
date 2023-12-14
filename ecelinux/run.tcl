@@ -30,9 +30,6 @@ set_directive_inline generate_rand2
 set_directive_inline pseudo_random
 set_directive_inline gaussian_box_muller
 
-# set_directive_array_partition -type complete gaussian_box_muller euclid_sq_temp
-# set_directive_array_partition -type complete gaussian_box_muller temp_x
-# set_directive_array_partition -type complete gaussian_box_muller temp_y
 set_directive_pipeline gaussian_box_muller/GAUSS_LABEL
 set_directive_pipeline gaussian_box_muller/GAUSS_LABEL_ONE
 set_directive_pipeline gaussian_box_muller/GAUSS_LABEL_TWO
